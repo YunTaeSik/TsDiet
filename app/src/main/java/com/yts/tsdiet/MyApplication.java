@@ -31,8 +31,6 @@ public class MyApplication extends MultiDexApplication {
         realm = Realm.getDefaultInstance();
 
         if (RealmService.getFoodList(realm).size() < 4203) {
-       //     String jsonLocation = AssetJSONFile("formules.json", context);
-
             SqlitHelper sqlitHelper = new SqlitHelper(this);
             RealmService.saveFoodList(realm, sqlitHelper.getFoodList());
         }
