@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             fragmentTransaction.add(R.id.container, fragment, tags[i]);
             fragmentTransaction.hide(fragment);
         }
-        fragmentTransaction.show(fragments.get(1));
+        fragmentTransaction.show(fragments.get(0));
         fragmentTransaction.commit();
     }
 

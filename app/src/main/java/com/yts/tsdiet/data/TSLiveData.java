@@ -1,5 +1,7 @@
 package com.yts.tsdiet.data;
 
+import java.util.List;
+
 import androidx.lifecycle.MutableLiveData;
 
 public class TSLiveData<T> extends MutableLiveData<T> {
@@ -11,5 +13,4 @@ public class TSLiveData<T> extends MutableLiveData<T> {
     public TSLiveData(T value) {
         setValue(value);
     }
-
 }
