@@ -6,5 +6,10 @@
     <string name="calendar">"달력"</string>
     <string name="save">"저장"</string>
     <string name="record">"기록"</string>
+    <string name="weight">"몸무게"</string>
+    <string name="weight_kg">"몸무게 (kg)"</string>
+
+    <!--hint-->
+    <string name="hint_weight">"몸무게를 입력해주세요."</string>
 
 </resources>

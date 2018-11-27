@@ -10,6 +10,9 @@
     <color name="textColorHint">#442C2E</color>
 
     <color name="lineColor">#f2f1f1</color>
+    <color name="lineColorDark">#DAD5D5</color>
 
     <color name="black">#000000</color>
+
+    <color name="lineColorEdit">#FCB8AB</color>
 </resources>

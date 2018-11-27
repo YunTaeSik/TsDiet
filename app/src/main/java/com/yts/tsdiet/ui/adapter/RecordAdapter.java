@@ -35,7 +35,7 @@ public class RecordAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         Object item = mRecordList.get(position);
-        if (item instanceof Integer) {
+        if (item instanceof Double) {
             return WEIGHT_TYPE;
         } else {
             return FOOD_TYPE;
@@ -60,7 +60,8 @@ public class RecordAdapter extends RecyclerView.Adapter {
             WeightViewHolder holder = (WeightViewHolder) viewHolder;
             Object item = mRecordList.get(position);
             WeightViewModel model = new WeightViewModel();
-            if (item instanceof Long) {
+            if (item instanceof Double) {
+                model.setWeight((Double) item);
             }
             holder.setViewModel(model);
         } else if (viewType == FOOD_TYPE) {

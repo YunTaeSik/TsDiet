@@ -33,10 +33,12 @@ public class RecordActivity extends BaseActivity {
         binding.setModel(model);
         binding.setLifecycleOwner(this);
 
+
+        observe();
+
         Calendar calendar = (Calendar) getIntent().getSerializableExtra(Keys.CALENDAR);
         model.setRecordList(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
-        observe();
     }
 
     private void observe() {
