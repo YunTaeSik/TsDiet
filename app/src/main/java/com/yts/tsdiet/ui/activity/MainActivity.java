@@ -1,4 +1,4 @@
-package com.yts.tsdiet.ui;
+package com.yts.tsdiet.ui.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;

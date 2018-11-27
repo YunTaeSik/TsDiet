@@ -4,6 +4,8 @@
 
     <string name="chart">"Chart"</string>
     <string name="calendar">"Calendar"</string>
+    <string name="save">"Save"</string>
+    <string name="record">"Record"</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

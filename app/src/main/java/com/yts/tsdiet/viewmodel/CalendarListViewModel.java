@@ -26,7 +26,7 @@ public class CalendarListViewModel extends BaseViewModel {
         ArrayList<Object> calendarList = new ArrayList<>();
         for (int i = -300; i < 300; i++) {
             try {
-                GregorianCalendar calendar = new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + i, 1);
+                GregorianCalendar calendar = new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + i, 1, 0, 0, 0);
                 calendarList.add(calendar.getTimeInMillis());
                 calendarList.add(calendar);
             } catch (Exception e) {

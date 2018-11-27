@@ -1,6 +1,11 @@
 package com.yts.tsdiet.viewmodel;
 
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+
 import com.yts.tsdiet.data.TSLiveData;
+import com.yts.tsdiet.ui.activity.RecordActivity;
 import com.yts.tsdiet.utils.Keys;
 
 import java.util.ArrayList;
@@ -27,7 +32,13 @@ public class CalendarViewModel extends BaseViewModel {
         for (int i = 1; i <= max; i++) {
             dayList.add(new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), i));
         }
-
         mDayList.setValue(dayList);
+    }
+
+    public void startRecord(View view) {
+        Context context = view.getContext();
+        Intent record = new Intent(context, RecordActivity.class);
+        record.putExtra(Keys.CALENDAR, mCalendar.getValue());
+        context.startActivity(record);
     }
 }
