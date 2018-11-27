@@ -9,7 +9,10 @@ import java.util.Locale;
 public class DateFormat {
     public final static String DATE_FORMAT = "yyyy-MM-dd (E)";
 
-    public final static String CALENDAR_HEADER_FORMAT = "MM";
+    public final static String CALENDAR_LIST_HEADER_FORMAT = "yyyy년";
+    public final static String CALENDAR_HEADER_FORMAT = "yyyy년 MM월";
+
+    public final static String DAY_FORMAT = "d";
 
     public final static String FULL_FORMAT = "yyyy-MM-dd (E) a hh:mm";
 

@@ -2,6 +2,7 @@ package com.yts.tsdiet.ui.fragment;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,9 @@ import com.yts.tsdiet.ui.adapter.CalendarAdapter;
 import com.yts.tsdiet.viewmodel.CalendarListViewModel;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -69,7 +70,20 @@ public class CalendarFragment extends Fragment {
                     adapter.setHasStableIds(true);
                     view.setLayoutManager(manager);
                     view.setAdapter(adapter);
+                    view.scrollToPosition(adapter.getItemCount() / 2);
                 }
+            }
+        });
+
+        final RecyclerView view = binding.pagerCalendar;
+        view.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                LinearLayoutManager manager = (LinearLayoutManager) view.getLayoutManager();
+                if (manager != null && model != null) {
+                    model.setTitle(manager.findFirstCompletelyVisibleItemPosition());
+                }
+                super.onScrolled(recyclerView, dx, dy);
             }
         });
     }

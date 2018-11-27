@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="CalendarHeaderBinding">
+    <data class="CalendarBinding">
 
         <import type="android.view.View" />
 
         <variable
             name="model"
-            type="com.yts.tsdiet.viewmodel.CalendarHeaderViewModel" />
+            type="com.yts.tsdiet.viewmodel.CalendarViewModel" />
     </data>
 
     <LinearLayout
@@ -18,12 +18,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            setCalendarHeaderText="@{model.mHeaderDate}"
+        <androidx.recyclerview.widget.RecyclerView
+            setDayListAdapter="@{model.mDayList}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>

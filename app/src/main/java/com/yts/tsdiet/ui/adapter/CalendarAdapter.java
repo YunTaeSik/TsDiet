@@ -4,9 +4,13 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.yts.tsdiet.R;
+import com.yts.tsdiet.databinding.CalendarBinding;
 import com.yts.tsdiet.databinding.CalendarHeaderBinding;
 import com.yts.tsdiet.viewmodel.CalendarHeaderViewModel;
+import com.yts.tsdiet.viewmodel.CalendarViewModel;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -28,6 +32,7 @@ public class CalendarAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+
     @Override
     public int getItemViewType(int position) {
         Object item = mCalendarList.get(position);
@@ -38,6 +43,18 @@ public class CalendarAdapter extends RecyclerView.Adapter {
         }
     }
 
+    @Override
+    public long getItemId(int position) {
+        Object item = mCalendarList.get(position);
+        if (item instanceof Long) {
+            return (Long) item;
+        } else if (item instanceof Calendar) {
+            return ((Calendar) item).getTimeInMillis();
+        } else {
+            return position;
+        }
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,8 +62,8 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             CalendarHeaderBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_calendar_header, parent, false);
             return new HeaderViewHolder(binding);
         }
-        CalendarHeaderBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_calendar_header, parent, false);
-        return new HeaderViewHolder(binding);
+        CalendarBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_calendar, parent, false);
+        return new CalendarViewHolder(binding);
     }
 
     @Override
@@ -58,6 +75,16 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             CalendarHeaderViewModel model = new CalendarHeaderViewModel();
             if (item instanceof Long) {
                 model.setHeaderDate((Long) item);
+            }
+            holder.setViewModel(model);
+        } else if (viewType == CALENDAR_TYPE) {
+            CalendarViewHolder holder = (CalendarViewHolder) viewHolder;
+            Object item = mCalendarList.get(position);
+            CalendarViewModel model = new CalendarViewModel();
+            if (item instanceof Calendar) {
+                Calendar calendar = (Calendar) item;
+                model.setCalendar(calendar);
+                model.setDayList(new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 1));
             }
             holder.setViewModel(model);
         }
@@ -73,7 +100,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
 
     private class HeaderViewHolder extends RecyclerView.ViewHolder {
         private CalendarHeaderBinding binding;
-        private CalendarHeaderViewModel model;
 
         public HeaderViewHolder(@NonNull CalendarHeaderBinding binding) {
             super(binding.getRoot());
@@ -81,7 +107,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
         }
 
         public void setViewModel(CalendarHeaderViewModel model) {
-            this.model = model;
             binding.setModel(model);
             binding.executePendingBindings();
         }
@@ -89,17 +114,16 @@ public class CalendarAdapter extends RecyclerView.Adapter {
     }
 
     private class CalendarViewHolder extends RecyclerView.ViewHolder {
-        private CalendarHeaderBinding binding;
-        private CalendarHeaderViewModel model;
+        private CalendarBinding binding;
 
-        public CalendarViewHolder(@NonNull CalendarHeaderBinding binding) {
+        public CalendarViewHolder(@NonNull CalendarBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void setViewModel(CalendarHeaderViewModel model) {
-            this.model = model;
+        public void setViewModel(CalendarViewModel model) {
             binding.setModel(model);
+            binding.executePendingBindings();
         }
     }
 }

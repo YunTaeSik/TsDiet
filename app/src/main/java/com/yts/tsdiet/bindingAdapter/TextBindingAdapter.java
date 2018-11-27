@@ -1,13 +1,10 @@
 package com.yts.tsdiet.bindingAdapter;
 
-import android.text.format.DateUtils;
 import android.widget.TextView;
 
 import com.yts.tsdiet.utils.DateFormat;
 
-import java.text.DateFormatSymbols;
 import java.util.Calendar;
-import java.util.Locale;
 
 import androidx.databinding.BindingAdapter;
 
@@ -16,9 +13,18 @@ public class TextBindingAdapter {
     public static void setCalendarHeaderText(TextView view, Long date) {
         try {
             if (date != null) {
-                int month = DateFormat.getCalendar(date).get(Calendar.MONTH);
-                String text = new DateFormatSymbols(Locale.ENGLISH).getMonths()[month].toUpperCase();
-                view.setText(text);
+                view.setText(DateFormat.getDate(date, DateFormat.CALENDAR_HEADER_FORMAT));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @BindingAdapter({"setDayText"})
+    public static void setDayText(TextView view, Calendar calendar) {
+        try {
+            if (calendar != null) {
+                view.setText(DateFormat.getDate(calendar.getTimeInMillis(), DateFormat.DAY_FORMAT));
             }
         } catch (Exception e) {
             e.printStackTrace();

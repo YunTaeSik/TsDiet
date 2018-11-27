@@ -4,28 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="CalendarHeaderBinding">
+    <data class="EmptyDayBinding">
 
         <import type="android.view.View" />
 
         <variable
             name="model"
-            type="com.yts.tsdiet.viewmodel.CalendarHeaderViewModel" />
+            type="com.yts.tsdiet.viewmodel.EmptyViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            setCalendarHeaderText="@{model.mHeaderDate}"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="16sp" />
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="2:3" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
