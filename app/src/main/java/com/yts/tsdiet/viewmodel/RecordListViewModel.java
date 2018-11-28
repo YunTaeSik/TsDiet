@@ -15,7 +15,7 @@ public class RecordListViewModel extends BaseViewModel {
 
         Record record = RealmService.getRecord(year, month, day);
 
-        recordList.add(record.getWeight());
+        recordList.add(record);
         if (record.getRecordFoodList() != null) {
             recordList.addAll(record.getRecordFoodList());
         }

@@ -13,6 +13,9 @@
     <color name="lineColorDark">#DAD5D5</color>
 
     <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="yellow">#F9D8AC</color>
+    <color name="blue">#A5E7E8</color>
 
     <color name="lineColorEdit">#FCB8AB</color>
 </resources>

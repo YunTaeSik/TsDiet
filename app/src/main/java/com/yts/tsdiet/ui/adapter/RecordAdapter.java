@@ -4,11 +4,12 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.yts.tsdiet.R;
+import com.yts.tsdiet.data.model.Record;
 import com.yts.tsdiet.data.model.RecordFood;
 import com.yts.tsdiet.databinding.RecordFoodItemBinding;
-import com.yts.tsdiet.databinding.WeightBinding;
+import com.yts.tsdiet.databinding.RecordHeaderBinding;
 import com.yts.tsdiet.viewmodel.RecordFoodViewModel;
-import com.yts.tsdiet.viewmodel.WeightViewModel;
+import com.yts.tsdiet.viewmodel.RecordViewModel;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecordAdapter extends RecyclerView.Adapter {
-    private final int WEIGHT_TYPE = 0;
+    private final int HEADER_TYPE = 0;
     private final int FOOD_TYPE = 1;
 
     private List<Object> mRecordList;
@@ -35,8 +36,8 @@ public class RecordAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         Object item = mRecordList.get(position);
-        if (item instanceof Double) {
-            return WEIGHT_TYPE;
+        if (item instanceof Record) {
+            return HEADER_TYPE;
         } else {
             return FOOD_TYPE;
         }
@@ -45,9 +46,9 @@ public class RecordAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == WEIGHT_TYPE) {
-            WeightBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_weight, parent, false);
-            return new WeightViewHolder(binding);
+        if (viewType == HEADER_TYPE) {
+            RecordHeaderBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_record_header, parent, false);
+            return new HeaderViewHolder(binding);
         }
         RecordFoodItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_record_food, parent, false);
         return new RecordFoodViewHolder(binding);
@@ -56,12 +57,12 @@ public class RecordAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         int viewType = getItemViewType(position);
-        if (viewType == WEIGHT_TYPE) {
-            WeightViewHolder holder = (WeightViewHolder) viewHolder;
+        if (viewType == HEADER_TYPE) {
+            HeaderViewHolder holder = (HeaderViewHolder) viewHolder;
             Object item = mRecordList.get(position);
-            WeightViewModel model = new WeightViewModel();
-            if (item instanceof Double) {
-                model.setWeight((Double) item);
+            RecordViewModel model = new RecordViewModel();
+            if (item instanceof Record) {
+                model.setRecord((Record) item);
             }
             holder.setViewModel(model);
         } else if (viewType == FOOD_TYPE) {
@@ -82,15 +83,15 @@ public class RecordAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
-    private class WeightViewHolder extends RecyclerView.ViewHolder {
-        private WeightBinding binding;
+    private class HeaderViewHolder extends RecyclerView.ViewHolder {
+        private RecordHeaderBinding binding;
 
-        public WeightViewHolder(@NonNull WeightBinding binding) {
+        public HeaderViewHolder(@NonNull RecordHeaderBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void setViewModel(WeightViewModel model) {
+        public void setViewModel(RecordViewModel model) {
             binding.setModel(model);
             binding.executePendingBindings();
         }

@@ -8,6 +8,8 @@
     <string name="record">"기록"</string>
     <string name="weight">"몸무게"</string>
     <string name="weight_kg">"몸무게 (kg)"</string>
+    <string name="nutrient">"영양소"</string>
+    <string name="nutrient_g">"영양소 (g)"</string>
 
     <!--hint-->
     <string name="hint_weight">"몸무게를 입력해주세요."</string>

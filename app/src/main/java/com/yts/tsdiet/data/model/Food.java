@@ -12,9 +12,11 @@ public class Food extends RealmObject {
     private String name; //이름
     private double size; //크기
     private double kcal; //칼로리
+
     private double carbohydrate; //탄수화물
     private double protein; //단백질
     private double fat; //지방
+
     private double sugars; //당류
     private double salt; //나트륨
     private double cholesterol; //콜레스테롤

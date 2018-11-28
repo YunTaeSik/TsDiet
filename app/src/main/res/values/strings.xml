@@ -8,6 +8,8 @@
     <string name="record">"Record"</string>
     <string name="weight">"Weight"</string>
     <string name="weight_kg">"Weight (kg)"</string>
+    <string name="nutrient">"Nutrient"</string>
+    <string name="nutrient_g">"Nutrient (g)"</string>
 
     <!--hint-->
     <string name="hint_weight">"Please enter your weight."</string>
