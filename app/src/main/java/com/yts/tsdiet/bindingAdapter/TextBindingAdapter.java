@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.yts.tsdiet.R;
 import com.yts.tsdiet.data.model.Record;
+import com.yts.tsdiet.data.model.RecordFood;
 import com.yts.tsdiet.utils.DateFormat;
 import com.yts.tsdiet.utils.Type;
 
@@ -30,7 +31,6 @@ public class TextBindingAdapter {
             e.printStackTrace();
         }
     }
-
 
 
     @BindingAdapter({"setCalendarHeaderText"})
@@ -76,6 +76,28 @@ public class TextBindingAdapter {
             }
             view.setText(text);
         }
+    }
 
+    @BindingAdapter({"setNutrientPercentText", "setType"})
+    public static void setNutrientPercentText(TextView view, RecordFood recordFood, String type) {
+        Context context = view.getContext();
+
+        String text = "";
+        if (recordFood != null) {
+            double carbohydrate = recordFood.getCarbohydrate();
+            double protein = recordFood.getProtein();
+            double fat = recordFood.getFat();
+
+            double total = carbohydrate + protein + fat == 0.0 ? 100.0 : carbohydrate + protein + fat;
+
+            if (type.equals(Type.CARBOHYDRATE)) {
+                text = context.getString(R.string.carbohydrate) + " (" + ((carbohydrate / total) * (100.0)) + "%)";
+            } else if (type.equals(Type.PROTEIN)) {
+                text = context.getString(R.string.protein) + " (" + ((protein / total) * (100.0)) + "%)";
+            } else if (type.equals(Type.FAT)) {
+                text = context.getString(R.string.fat) + " (" + ((fat / total) * (100.0)) + "%)";
+            }
+            view.setText(text);
+        }
     }
 }
