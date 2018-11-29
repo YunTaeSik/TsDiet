@@ -15,6 +15,10 @@ public class Record extends RealmObject {
     private int day;
 
     private double weight;
+    private double totalKcal;
+    private double totalCarbohydrate;
+    private double totalProtein;
+    private double totalFat;
 
     private RealmList<RecordFood> recordFoodList = new RealmList<>();
 
@@ -59,6 +63,38 @@ public class Record extends RealmObject {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public double getTotalKcal() {
+        return totalKcal;
+    }
+
+    public void setTotalKcal(double totalKcal) {
+        this.totalKcal = totalKcal;
+    }
+
+    public double getTotalCarbohydrate() {
+        return totalCarbohydrate;
+    }
+
+    public void setTotalCarbohydrate(double totalCarbohydrate) {
+        this.totalCarbohydrate = totalCarbohydrate;
+    }
+
+    public double getTotalProtein() {
+        return totalProtein;
+    }
+
+    public void setTotalProtein(double totalProtein) {
+        this.totalProtein = totalProtein;
+    }
+
+    public double getTotalFat() {
+        return totalFat;
+    }
+
+    public void setTotalFat(double totalFat) {
+        this.totalFat = totalFat;
     }
 
     public RealmList<RecordFood> getRecordFoodList() {

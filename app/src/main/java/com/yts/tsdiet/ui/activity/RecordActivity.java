@@ -13,6 +13,7 @@ import com.yts.tsdiet.viewmodel.RecordListViewModel;
 import java.util.Calendar;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -55,6 +56,19 @@ public class RecordActivity extends BaseActivity {
                     adapter.setHasStableIds(true);
                     view.setLayoutManager(manager);
                     view.setAdapter(adapter);
+                }
+            }
+        });
+
+        binding.listRecord.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                boolean isScrollDown = dy > 0;
+                if (isScrollDown) {
+                    binding.btnAdd.hide();
+                } else {
+                    binding.btnAdd.show();
                 }
             }
         });

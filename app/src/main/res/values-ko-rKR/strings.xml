@@ -10,7 +10,13 @@
     <string name="weight_kg">"몸무게 (kg)"</string>
     <string name="nutrient">"영양소"</string>
     <string name="nutrient_g">"영양소 (g)"</string>
+    <string name="carbohydrate">"탄수화물"</string>
+    <string name="protein">"단백질"</string>
+    <string name="fat">"지방"</string>
+    <string name="calorie">"칼로리"</string>
+    <string name="diet">"식단"</string>
 
+    <string name="total_calorie_kcal">"총 칼로리 (Kcal)"</string>
     <!--hint-->
     <string name="hint_weight">"몸무게를 입력해주세요."</string>
 
