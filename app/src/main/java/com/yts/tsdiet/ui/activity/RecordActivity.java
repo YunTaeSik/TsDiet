@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.yts.tsdiet.BaseActivity;
 import com.yts.tsdiet.R;
+import com.yts.tsdiet.data.model.Food;
 import com.yts.tsdiet.data.model.RecordFood;
 import com.yts.tsdiet.databinding.RecordBinding;
 import com.yts.tsdiet.ui.adapter.RecordAdapter;
@@ -91,7 +92,11 @@ public class RecordActivity extends BaseActivity {
             String action = intent.getAction();
             if (action != null) {
                 if (action.equals(SendBroadcast.SELECT_FOOD)) { //기본 배경화면
-                    RecordFood recordFood = intent.getParcelableExtra(Keys.RECORD_FOOD);
+                    Food food = intent.getParcelableExtra(Keys.FOOD);
+
+                    Intent recordFood = new Intent(mContext, RecordFoodActivity.class);
+                    recordFood.putExtra(Keys.FOOD, food);
+                    startActivity(recordFood);
                 }
             }
         }

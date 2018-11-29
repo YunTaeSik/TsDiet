@@ -1,6 +1,7 @@
 package com.yts.tsdiet;
 
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,13 @@ public class BaseActivity extends AppCompatActivity {
         mCompositeDisposable = new CompositeDisposable();
         mRealm = Realm.getDefaultInstance();
 
+    }
+
+    public void hideKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null && getCurrentFocus() != null) {
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 
     @Override

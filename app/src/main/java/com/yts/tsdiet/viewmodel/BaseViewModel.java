@@ -2,6 +2,7 @@ package com.yts.tsdiet.viewmodel;
 
 import android.content.Context;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 
 import com.yts.tsdiet.data.TSLiveData;
@@ -9,6 +10,8 @@ import com.yts.tsdiet.data.TSLiveData;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 import io.realm.Realm;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class BaseViewModel extends ViewModel {
 
@@ -20,6 +23,14 @@ public class BaseViewModel extends ViewModel {
         Context context = view.getContext();
         if (context instanceof AppCompatActivity) {
             ((AppCompatActivity) context).onBackPressed();
+        }
+    }
+
+    public void hideKeyboard(View view) {
+        Context context = view.getContext();
+        InputMethodManager inputMethodManager = (InputMethodManager)context. getSystemService(INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null &&view != null) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 

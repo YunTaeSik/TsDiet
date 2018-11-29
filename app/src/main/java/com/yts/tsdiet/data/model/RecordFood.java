@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import io.realm.RealmObject;
 
 public class RecordFood extends RealmObject implements Parcelable {
+
+    private double quantity; //수량
     private String name; //이름
     private double size; //크기
     private double kcal; //칼로리
@@ -17,6 +19,29 @@ public class RecordFood extends RealmObject implements Parcelable {
     private double cholesterol; //콜레스테롤
     private double saturated; //포화지방산
     private double trans; //트랜스 지방
+
+    public RecordFood(String name, double size, double kcal, double carbohydrate, double protein, double fat, double sugars, double salt, double cholesterol, double saturated, double trans) {
+        this.quantity = 1.0;
+        this.name = name;
+        this.size = size;
+        this.kcal = kcal;
+        this.carbohydrate = carbohydrate;
+        this.protein = protein;
+        this.fat = fat;
+        this.sugars = sugars;
+        this.salt = salt;
+        this.cholesterol = cholesterol;
+        this.saturated = saturated;
+        this.trans = trans;
+    }
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
 
     public String getName() {
         return name;
@@ -107,6 +132,9 @@ public class RecordFood extends RealmObject implements Parcelable {
     }
 
 
+    public RecordFood() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -114,6 +142,7 @@ public class RecordFood extends RealmObject implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(this.quantity);
         dest.writeString(this.name);
         dest.writeDouble(this.size);
         dest.writeDouble(this.kcal);
@@ -127,10 +156,8 @@ public class RecordFood extends RealmObject implements Parcelable {
         dest.writeDouble(this.trans);
     }
 
-    public RecordFood() {
-    }
-
     protected RecordFood(Parcel in) {
+        this.quantity = in.readDouble();
         this.name = in.readString();
         this.size = in.readDouble();
         this.kcal = in.readDouble();
@@ -144,7 +171,7 @@ public class RecordFood extends RealmObject implements Parcelable {
         this.trans = in.readDouble();
     }
 
-    public static final Parcelable.Creator<RecordFood> CREATOR = new Parcelable.Creator<RecordFood>() {
+    public static final Creator<RecordFood> CREATOR = new Creator<RecordFood>() {
         @Override
         public RecordFood createFromParcel(Parcel source) {
             return new RecordFood(source);

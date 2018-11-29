@@ -16,9 +16,11 @@
     <string name="calorie">"칼로리"</string>
     <string name="diet">"식단"</string>
     <string name="list">"목록"</string>
+    <string name="quantity">"수량"</string>
 
     <string name="total_calorie_kcal">"총 칼로리 (Kcal)"</string>
     <!--hint-->
     <string name="hint_weight">"몸무게를 입력해주세요."</string>
+    <string name="hint_quantity">"수량을 입력해주세요."</string>
     <string name="hint_search_food">"음식명을 입력해주세요."</string>
 </resources>

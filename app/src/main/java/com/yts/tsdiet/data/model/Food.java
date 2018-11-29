@@ -1,9 +1,12 @@
 package com.yts.tsdiet.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Food extends RealmObject {
+public class Food extends RealmObject implements Parcelable {
     @PrimaryKey
     private String idx;
 
@@ -145,4 +148,55 @@ public class Food extends RealmObject {
     public void setTrans(double trans) {
         this.trans = trans;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.idx);
+        dest.writeString(this.group);
+        dest.writeString(this.name);
+        dest.writeDouble(this.size);
+        dest.writeDouble(this.kcal);
+        dest.writeDouble(this.carbohydrate);
+        dest.writeDouble(this.protein);
+        dest.writeDouble(this.fat);
+        dest.writeDouble(this.sugars);
+        dest.writeDouble(this.salt);
+        dest.writeDouble(this.cholesterol);
+        dest.writeDouble(this.saturated);
+        dest.writeDouble(this.trans);
+    }
+
+    protected Food(Parcel in) {
+        this.idx = in.readString();
+        this.group = in.readString();
+        this.name = in.readString();
+        this.size = in.readDouble();
+        this.kcal = in.readDouble();
+        this.carbohydrate = in.readDouble();
+        this.protein = in.readDouble();
+        this.fat = in.readDouble();
+        this.sugars = in.readDouble();
+        this.salt = in.readDouble();
+        this.cholesterol = in.readDouble();
+        this.saturated = in.readDouble();
+        this.trans = in.readDouble();
+    }
+
+    public static final Parcelable.Creator<Food> CREATOR = new Parcelable.Creator<Food>() {
+        @Override
+        public Food createFromParcel(Parcel source) {
+            return new Food(source);
+        }
+
+        @Override
+        public Food[] newArray(int size) {
+            return new Food[size];
+        }
+    };
 }

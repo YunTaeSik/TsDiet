@@ -31,6 +31,8 @@ public class TextBindingAdapter {
         }
     }
 
+
+
     @BindingAdapter({"setCalendarHeaderText"})
     public static void setCalendarHeaderText(TextView view, Long date) {
         try {

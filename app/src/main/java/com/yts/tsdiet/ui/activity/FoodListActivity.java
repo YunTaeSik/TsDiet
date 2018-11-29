@@ -13,6 +13,7 @@ import com.yts.tsdiet.viewmodel.FoodListViewModel;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -55,6 +56,13 @@ public class FoodListActivity extends BaseActivity implements SearchCallback {
                     view.setLayoutManager(manager);
                     view.setAdapter(adapter);
                 }
+            }
+        });
+        binding.listFood.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                hideKeyboard();
             }
         });
     }
