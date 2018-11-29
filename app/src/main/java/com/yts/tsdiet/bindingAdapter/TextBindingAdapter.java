@@ -22,6 +22,15 @@ public class TextBindingAdapter {
         }
     }
 
+    @BindingAdapter({"setKcalText"})
+    public static void setKcalText(TextView view, double value) {
+        try {
+            view.setText("(" + String.valueOf(value) + "kcal)");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @BindingAdapter({"setCalendarHeaderText"})
     public static void setCalendarHeaderText(TextView view, Long date) {
         try {

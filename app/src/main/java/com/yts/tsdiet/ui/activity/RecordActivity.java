@@ -1,13 +1,18 @@
 package com.yts.tsdiet.ui.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import com.yts.tsdiet.BaseActivity;
 import com.yts.tsdiet.R;
+import com.yts.tsdiet.data.model.RecordFood;
 import com.yts.tsdiet.databinding.RecordBinding;
 import com.yts.tsdiet.ui.adapter.RecordAdapter;
 import com.yts.tsdiet.utils.Keys;
+import com.yts.tsdiet.utils.SendBroadcast;
 import com.yts.tsdiet.viewmodel.RecordListViewModel;
 
 import java.util.Calendar;
@@ -34,12 +39,17 @@ public class RecordActivity extends BaseActivity {
         binding.setModel(model);
         binding.setLifecycleOwner(this);
 
+        Calendar calendar = (Calendar) getIntent().getSerializableExtra(Keys.CALENDAR);
+        model.setRecordList(mRealm, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
         observe();
+        registerReceiver(broadcastReceiver, getIntentFilter());
+    }
 
-        Calendar calendar = (Calendar) getIntent().getSerializableExtra(Keys.CALENDAR);
-        model.setRecordList(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
     }
 
     private void observe() {
@@ -73,4 +83,24 @@ public class RecordActivity extends BaseActivity {
             }
         });
     }
+
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action != null) {
+                if (action.equals(SendBroadcast.SELECT_FOOD)) { //기본 배경화면
+                    RecordFood recordFood = intent.getParcelableExtra(Keys.RECORD_FOOD);
+                }
+            }
+        }
+    };
+
+    private IntentFilter getIntentFilter() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(SendBroadcast.SELECT_FOOD);
+        return intentFilter;
+    }
+
 }

@@ -41,4 +41,108 @@ public class Food extends RealmObject {
         this.saturated = saturated;
         this.trans = trans;
     }
+
+    public String getIdx() {
+        return idx;
+    }
+
+    public void setIdx(String idx) {
+        this.idx = idx;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
+
+    public double getKcal() {
+        return kcal;
+    }
+
+    public void setKcal(double kcal) {
+        this.kcal = kcal;
+    }
+
+    public double getCarbohydrate() {
+        return carbohydrate;
+    }
+
+    public void setCarbohydrate(double carbohydrate) {
+        this.carbohydrate = carbohydrate;
+    }
+
+    public double getProtein() {
+        return protein;
+    }
+
+    public void setProtein(double protein) {
+        this.protein = protein;
+    }
+
+    public double getFat() {
+        return fat;
+    }
+
+    public void setFat(double fat) {
+        this.fat = fat;
+    }
+
+    public double getSugars() {
+        return sugars;
+    }
+
+    public void setSugars(double sugars) {
+        this.sugars = sugars;
+    }
+
+    public double getSalt() {
+        return salt;
+    }
+
+    public void setSalt(double salt) {
+        this.salt = salt;
+    }
+
+    public double getCholesterol() {
+        return cholesterol;
+    }
+
+    public void setCholesterol(double cholesterol) {
+        this.cholesterol = cholesterol;
+    }
+
+    public double getSaturated() {
+        return saturated;
+    }
+
+    public void setSaturated(double saturated) {
+        this.saturated = saturated;
+    }
+
+    public double getTrans() {
+        return trans;
+    }
+
+    public void setTrans(double trans) {
+        this.trans = trans;
+    }
 }

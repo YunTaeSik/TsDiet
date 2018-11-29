@@ -11,10 +11,20 @@ import io.realm.Realm;
 import io.realm.Sort;
 
 public class RealmService {
-    private static Realm mRealm = Realm.getDefaultInstance();
 
     public static List<Food> getFoodList(Realm realm) {
         return realm.copyFromRealm(realm.where(Food.class).findAll());
+    }
+
+    public static List<Food> getFoodList(Realm realm, String search) {
+        List<Food> foodList = getFoodList(realm);
+        List<Food> resultList = new ArrayList<>();
+        for (Food food : foodList) {
+            if (food.getName().toLowerCase().contains(search.toLowerCase())) {
+                resultList.add(food);
+            }
+        }
+        return resultList;
     }
 
     public static void saveFoodList(Realm realm, ArrayList<Food> foods) {
@@ -23,13 +33,14 @@ public class RealmService {
         realm.commitTransaction();
     }
 
-    public static Record getRecord(int year, int month, int day) {
-        Record record = mRealm.where(Record.class).equalTo("year", year).equalTo("month", month).equalTo("day", day).findFirst();
+    public static Record getRecord(Realm realm, int year, int month, int day) {
+        Record record = realm.where(Record.class).equalTo("year", year).equalTo("month", month).equalTo("day", day).findFirst();
         if (record == null) {
             record = new Record();
         } else {
-            record = mRealm.copyFromRealm(record);
+            record = realm.copyFromRealm(record);
         }
         return record;
     }
+
 }

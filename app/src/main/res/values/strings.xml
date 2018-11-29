@@ -15,10 +15,12 @@
     <string name="fat">"Fat"</string>
     <string name="calorie">"Calorie"</string>
     <string name="diet">"Diet"</string>
+    <string name="list">"List"</string>
 
     <string name="total_calorie_kcal">"Total Calorie (Kcal)"</string>
 
     <!--hint-->
     <string name="hint_weight">"Please enter your weight."</string>
+    <string name="hint_search_food">"Please enter the name of the food."</string>
 
 </resources>

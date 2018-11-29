@@ -42,11 +42,7 @@
             android:padding="12dp"
             android:singleLine="true" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/lineColorDark" />
-
+        <View style="@style/lineView" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,10 +63,7 @@
             android:singleLine="true" />
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/lineColorDark" />
+        <View style="@style/lineView" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -173,10 +166,7 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/lineColorDark" />
+        <View style="@style/lineView" />
 
         <TextView
             android:layout_width="wrap_content"

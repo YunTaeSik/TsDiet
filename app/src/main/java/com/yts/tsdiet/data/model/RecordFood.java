@@ -1,8 +1,11 @@
 package com.yts.tsdiet.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import io.realm.RealmObject;
 
-public class RecordFood extends RealmObject {
+public class RecordFood extends RealmObject implements Parcelable {
     private String name; //이름
     private double size; //크기
     private double kcal; //칼로리
@@ -102,4 +105,54 @@ public class RecordFood extends RealmObject {
     public void setTrans(double trans) {
         this.trans = trans;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeDouble(this.size);
+        dest.writeDouble(this.kcal);
+        dest.writeDouble(this.carbohydrate);
+        dest.writeDouble(this.protein);
+        dest.writeDouble(this.fat);
+        dest.writeDouble(this.sugars);
+        dest.writeDouble(this.salt);
+        dest.writeDouble(this.cholesterol);
+        dest.writeDouble(this.saturated);
+        dest.writeDouble(this.trans);
+    }
+
+    public RecordFood() {
+    }
+
+    protected RecordFood(Parcel in) {
+        this.name = in.readString();
+        this.size = in.readDouble();
+        this.kcal = in.readDouble();
+        this.carbohydrate = in.readDouble();
+        this.protein = in.readDouble();
+        this.fat = in.readDouble();
+        this.sugars = in.readDouble();
+        this.salt = in.readDouble();
+        this.cholesterol = in.readDouble();
+        this.saturated = in.readDouble();
+        this.trans = in.readDouble();
+    }
+
+    public static final Parcelable.Creator<RecordFood> CREATOR = new Parcelable.Creator<RecordFood>() {
+        @Override
+        public RecordFood createFromParcel(Parcel source) {
+            return new RecordFood(source);
+        }
+
+        @Override
+        public RecordFood[] newArray(int size) {
+            return new RecordFood[size];
+        }
+    };
 }
