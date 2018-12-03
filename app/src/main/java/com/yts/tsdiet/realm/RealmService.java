@@ -7,12 +7,24 @@ import com.yts.tsdiet.data.model.Record;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class RealmService {
 
+
     public static List<Food> getFoodList(Realm realm) {
         return realm.copyFromRealm(realm.where(Food.class).findAll());
+
+    }
+
+    public static RealmResults<Food> getFoodListRealmResults(Realm realm) {
+        return realm.where(Food.class).findAll();
     }
 
     public static List<Food> getFoodList(Realm realm, String search) {
