@@ -11,7 +11,7 @@ import com.yts.tsdiet.data.model.Food;
 import java.util.ArrayList;
 
 public class SqlitHelper extends SQLiteAssetHelper {
-    private static final String DATABASE_NAME = "food2.db";
+    private static final String DATABASE_NAME = "food.db";
     private static final int DATABASE_VERSION = 1;
 
     public SqlitHelper(Context context) {
@@ -24,7 +24,7 @@ public class SqlitHelper extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         String[] sqlSelect = {"idx", "name", "size", "kcal", "carbohydrate", "protein", "fat", "sugars", "salt", "cholesterol", "saturated", "trans"};
-        String sqlTables = "FOOD";
+        String sqlTables = "food";
         qb.setTables(sqlTables);
 
         Cursor c = qb.query(db, sqlSelect, null, null, null, null, null);

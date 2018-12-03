@@ -8,6 +8,7 @@ import android.widget.Filterable;
 import com.yts.tsdiet.R;
 import com.yts.tsdiet.data.model.Food;
 import com.yts.tsdiet.databinding.FoodItemBinding;
+import com.yts.tsdiet.realm.RealmService;
 import com.yts.tsdiet.utils.NullFilter;
 import com.yts.tsdiet.viewmodel.FoodViewModel;
 
@@ -17,6 +18,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import io.realm.Realm;
 
 public class FoodAdapter extends RecyclerView.Adapter implements Filterable {
     private List<Food> mFoodList;
@@ -73,21 +75,15 @@ public class FoodAdapter extends RecyclerView.Adapter implements Filterable {
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
-                List<Food> filterList = new ArrayList<>();
 
-                String search = charSequence.toString().replaceAll(" ", "");
-                if (search.isEmpty()) {
-                    filterList = mFoodList;
-                } else {
-                    for (Food food : mFoodList) {
-                        String name = NullFilter.check(food.getName());
-                        if (name.toLowerCase().replaceAll(" ", "").contains(search.toLowerCase())) {
-                            filterList.add(food);
-                        }
-                    }
-                }
                 FilterResults filterResults = new FilterResults();
-                filterResults.values = filterList;
+                String search = charSequence.toString().toLowerCase().replaceAll(" ", "");
+
+                if (search.isEmpty()) {
+                    filterResults.values = mFoodList;
+                } else {
+                    filterResults.values = RealmService.getFoodList(Realm.getDefaultInstance(), search);
+                }
                 return filterResults;
             }
 

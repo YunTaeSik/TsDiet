@@ -17,7 +17,7 @@ public class FoodListViewModel extends BaseViewModel {
 
 
     public void initList(Realm realm) {
-        mFoodList.setValue(RealmService.getFoodList(realm));
+        mFoodList.postValue(RealmService.getFoodList(realm));
     }
 
     public void setSearchCallback(SearchCallback searchCallback) {

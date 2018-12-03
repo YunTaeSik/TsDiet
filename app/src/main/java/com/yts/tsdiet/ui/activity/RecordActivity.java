@@ -41,7 +41,7 @@ public class RecordActivity extends BaseActivity {
         binding.setLifecycleOwner(this);
 
         Calendar calendar = (Calendar) getIntent().getSerializableExtra(Keys.CALENDAR);
-        model.setRecordList(mRealm, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        model.getRecordList(mRealm, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
         observe();
         registerReceiver(broadcastReceiver, getIntentFilter());
@@ -91,12 +91,16 @@ public class RecordActivity extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (action != null) {
-                if (action.equals(SendBroadcast.SELECT_FOOD)) { //기본 배경화면
+                if (action.equals(SendBroadcast.SELECT_FOOD)) {
                     Food food = intent.getParcelableExtra(Keys.FOOD);
-
                     Intent recordFood = new Intent(mContext, RecordFoodActivity.class);
                     recordFood.putExtra(Keys.FOOD, food);
                     startActivity(recordFood);
+                } else if (action.equals(SendBroadcast.SAVE_RECORD_FOOD)) { //저장
+                    RecordFood recordFood = intent.getParcelableExtra(Keys.RECORD_FOOD);
+                    if (model != null) {
+                        model.addRecordFood(recordFood);
+                    }
                 }
             }
         }
@@ -105,6 +109,7 @@ public class RecordActivity extends BaseActivity {
     private IntentFilter getIntentFilter() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(SendBroadcast.SELECT_FOOD);
+        intentFilter.addAction(SendBroadcast.SAVE_RECORD_FOOD);
         return intentFilter;
     }
 

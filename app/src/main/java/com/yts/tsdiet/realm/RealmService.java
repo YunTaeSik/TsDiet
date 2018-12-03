@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.Sort;
 
 public class RealmService {
 
@@ -17,14 +16,11 @@ public class RealmService {
     }
 
     public static List<Food> getFoodList(Realm realm, String search) {
-        List<Food> foodList = getFoodList(realm);
-        List<Food> resultList = new ArrayList<>();
-        for (Food food : foodList) {
-            if (food.getName().toLowerCase().contains(search.toLowerCase())) {
-                resultList.add(food);
-            }
-        }
-        return resultList;
+        List<Food> foodList = new ArrayList<>();
+        foodList.addAll(realm.copyFromRealm(realm.where(Food.class).equalTo("name", search).findAll()));
+        foodList.addAll(realm.copyFromRealm(realm.where(Food.class).notEqualTo("name", search).contains("name", search).findAll()));
+
+        return foodList;
     }
 
     public static void saveFoodList(Realm realm, ArrayList<Food> foods) {

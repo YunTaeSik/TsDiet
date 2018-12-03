@@ -8,7 +8,9 @@ import com.yts.tsdiet.data.model.Record;
 import com.yts.tsdiet.data.model.RecordFood;
 import com.yts.tsdiet.utils.DateFormat;
 import com.yts.tsdiet.utils.Type;
+import com.yts.tsdiet.utils.ValueFormat;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 import androidx.databinding.BindingAdapter;
@@ -17,7 +19,8 @@ public class TextBindingAdapter {
     @BindingAdapter({"setText"})
     public static void setText(TextView view, double value) {
         try {
-            view.setText(String.valueOf(value));
+            String text = ValueFormat.format(value);
+            view.setText(text);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -26,7 +29,8 @@ public class TextBindingAdapter {
     @BindingAdapter({"setKcalText"})
     public static void setKcalText(TextView view, double value) {
         try {
-            view.setText("(" + String.valueOf(value) + "kcal)");
+            String text = "(" + ValueFormat.format(value) + "kcal)";
+            view.setText(text);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,12 +71,15 @@ public class TextBindingAdapter {
 
             double total = carbohydrate + protein + fat == 0.0 ? 100.0 : carbohydrate + protein + fat;
 
+
+            DecimalFormat precision = new DecimalFormat("0.0");
+
             if (type.equals(Type.CARBOHYDRATE)) {
-                text = context.getString(R.string.carbohydrate) + " (" + ((carbohydrate / total) * (100.0)) + "%)";
+                text = context.getString(R.string.carbohydrate) + " (" + ValueFormat.format((carbohydrate / total) * (100.0)) + "%)";
             } else if (type.equals(Type.PROTEIN)) {
-                text = context.getString(R.string.protein) + " (" + ((protein / total) * (100.0)) + "%)";
+                text = context.getString(R.string.protein) + " (" + ValueFormat.format((protein / total) * (100.0)) + "%)";
             } else if (type.equals(Type.FAT)) {
-                text = context.getString(R.string.fat) + " (" + ((fat / total) * (100.0)) + "%)";
+                text = context.getString(R.string.fat) + " (" + ValueFormat.format((fat / total) * (100.0)) + "%)";
             }
             view.setText(text);
         }
@@ -91,11 +98,11 @@ public class TextBindingAdapter {
             double total = carbohydrate + protein + fat == 0.0 ? 100.0 : carbohydrate + protein + fat;
 
             if (type.equals(Type.CARBOHYDRATE)) {
-                text = context.getString(R.string.carbohydrate) + " (" + ((carbohydrate / total) * (100.0)) + "%)";
+                text = context.getString(R.string.carbohydrate) + " (" + ValueFormat.format((carbohydrate / total) * (100.0)) + "%)";
             } else if (type.equals(Type.PROTEIN)) {
-                text = context.getString(R.string.protein) + " (" + ((protein / total) * (100.0)) + "%)";
+                text = context.getString(R.string.protein) + " (" + ValueFormat.format((protein / total) * (100.0)) + "%)";
             } else if (type.equals(Type.FAT)) {
-                text = context.getString(R.string.fat) + " (" + ((fat / total) * (100.0)) + "%)";
+                text = context.getString(R.string.fat) + " (" + ValueFormat.format((fat / total) * (100.0)) + "%)";
             }
             view.setText(text);
         }

@@ -25,6 +25,14 @@ public class Record extends RealmObject {
     public Record() {
     }
 
+    public void addRecordFood(RecordFood recordFood) {
+        recordFoodList.add(recordFood);
+        totalKcal = totalKcal + recordFood.getKcal();
+        totalCarbohydrate = totalCarbohydrate + recordFood.getCarbohydrate();
+        totalProtein = totalProtein + recordFood.getProtein();
+        totalFat = totalFat + recordFood.getFat();
+    }
+
     public long getCreateTime() {
         return createTime;
     }
