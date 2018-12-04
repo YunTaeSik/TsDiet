@@ -37,6 +37,28 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:textSize="9sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="85.0kg"
+                android:textSize="8sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="123.0kcal"
+                android:textSize="8sp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

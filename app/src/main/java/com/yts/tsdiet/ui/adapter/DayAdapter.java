@@ -87,6 +87,7 @@ public class DayAdapter extends RecyclerView.Adapter {
             CalendarViewModel model = new CalendarViewModel();
             if (item instanceof Calendar) {
                 model.setCalendar((Calendar) item);
+                model.setRecord();
             }
             holder.setViewModel(model);
         }

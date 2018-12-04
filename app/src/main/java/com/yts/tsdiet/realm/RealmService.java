@@ -49,6 +49,11 @@ public class RealmService {
         return record;
     }
 
+    public static Record getFastRecord(Realm realm, int year, int month, int day) {
+        Record record = realm.where(Record.class).equalTo("year", year).equalTo("month", month).equalTo("day", day).findFirst();
+        return record;
+    }
+
     public static void saveRecord(Realm realm, Record record) {
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(record);
