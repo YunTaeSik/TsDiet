@@ -8,6 +8,7 @@
     <string name="record">"Record"</string>
     <string name="weight">"Weight"</string>
     <string name="weight_kg">"Weight (kg)"</string>
+    <string name="weight_two">"Weight"</string>
     <string name="weight_two_g">"Weight (g)"</string>
     <string name="nutrient">"Nutrient"</string>
     <string name="nutrient_g">"Nutrient (g)"</string>
@@ -18,6 +19,8 @@
     <string name="diet">"Diet"</string>
     <string name="list">"List"</string>
     <string name="quantity">"Quantity"</string>
+    <string name="quantity_count">"Quantity"</string>
+    <string name="count">""</string>
 
     <string name="total_calorie_kcal">"Total Calorie (Kcal)"</string>
 

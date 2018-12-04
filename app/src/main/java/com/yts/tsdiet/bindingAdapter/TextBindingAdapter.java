@@ -107,4 +107,32 @@ public class TextBindingAdapter {
             view.setText(text);
         }
     }
+
+    @BindingAdapter({"setRecordFoodListTitleText"})
+    public static void setRecordFoodListTitleText(TextView view, RecordFood recordFood) {
+        try {
+            String text = recordFood.getName() +
+                    " " + ValueFormat.format(recordFood.getKcal()) + "kcal";
+            view.setText(text);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @BindingAdapter({"setRecordFoodListSubTitleText"})
+    public static void setRecordFoodListSubTitleText(TextView view, RecordFood recordFood) {
+        try {
+            Context context = view.getContext();
+            //탄수화물 : 200g 단백질 : 200g 지방 : 200g\n수량 : 1 개 중량 : 200g
+            String text = context.getString(R.string.carbohydrate) + " : " + ValueFormat.format(recordFood.getCarbohydrate()) + "g "
+                    + context.getString(R.string.protein) + " : " + ValueFormat.format(recordFood.getProtein()) + "g "
+                    + context.getString(R.string.fat) + " : " + ValueFormat.format(recordFood.getFat()) + "g" + "\n"
+                    + context.getString(R.string.quantity) + " : " + recordFood.getQuantity() + context.getString(R.string.count) + " "
+                    + context.getString(R.string.weight_two) + " : " + ValueFormat.format(recordFood.getSize()) + "g";
+            view.setText(text);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

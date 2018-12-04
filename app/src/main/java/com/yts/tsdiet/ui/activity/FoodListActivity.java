@@ -37,7 +37,6 @@ public class FoodListActivity extends BaseActivity implements SearchCallback {
         binding.setLifecycleOwner(this);
 
         model.setSearchCallback(this);
-        model.setCompositeDisposable(mCompositeDisposable);
         model.initList(mRealm);
         observe();
     }

@@ -70,6 +70,7 @@ public class RecordAdapter extends RecyclerView.Adapter {
             Object item = mRecordList.get(position);
             RecordFoodViewModel model = new RecordFoodViewModel();
             if (item instanceof RecordFood) {
+                model.setRecordFood((RecordFood) item);
             }
             holder.setViewModel(model);
         }

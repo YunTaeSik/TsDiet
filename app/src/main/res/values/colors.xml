@@ -8,6 +8,7 @@
 
     <color name="textColor">#442C2E</color>
     <color name="textColorHint">#442C2E</color>
+    <color name="textColorSecondary">#979797</color>
 
     <color name="lineColor">#f2f1f1</color>
     <color name="lineColorDark">#DAD5D5</color>

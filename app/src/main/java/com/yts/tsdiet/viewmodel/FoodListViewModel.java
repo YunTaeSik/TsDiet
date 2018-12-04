@@ -12,16 +12,10 @@ import io.realm.Realm;
 
 public class FoodListViewModel extends BaseViewModel {
     public TSLiveData<List<Food>> mFoodList = new TSLiveData<>();
-    public TSLiveData<Boolean> isSearching = new TSLiveData<>(false);
     private SearchCallback mSearchCallback;
-    private CompositeDisposable mCompositeDisposable;
 
     public void initList(final Realm realm) {
         mFoodList.setValue(RealmService.getFoodListRealmResults(realm));
-    }
-
-    public void setCompositeDisposable(CompositeDisposable mCompositeDisposable) {
-        this.mCompositeDisposable = mCompositeDisposable;
     }
 
     public void setSearchCallback(SearchCallback searchCallback) {

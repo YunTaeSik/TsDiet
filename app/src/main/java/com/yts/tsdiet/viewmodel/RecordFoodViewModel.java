@@ -28,6 +28,10 @@ public class RecordFoodViewModel extends BaseViewModel {
         mRecordFood.setValue(recordFood);
     }
 
+    public void setRecordFood(RecordFood recordFood) {
+        mRecordFood.setValue(recordFood);
+    }
+
     public void changeQuantity(CharSequence charSequence) {
         double quantity = 0.0;
 

@@ -17,13 +17,17 @@ import io.realm.Realm;
 
 public class RecordListViewModel extends BaseViewModel {
     public TSLiveData<List<Object>> mRecordList = new TSLiveData<>();
+    public TSLiveData<Boolean> isFloatingVisible = new TSLiveData<>(false);
 
 
     private void setRecordList(Record record) {
         ArrayList<Object> recordList = new ArrayList<>();
         recordList.add(record);
-        if (record.getRecordFoodList() != null) {
+        if (record.getRecordFoodList() != null && record.getRecordFoodList().size() > 0) {
             recordList.addAll(record.getRecordFoodList());
+            isFloatingVisible.setValue(true);
+        } else {
+            isFloatingVisible.setValue(false);
         }
         mRecordList.setValue(recordList);
     }
@@ -49,6 +53,5 @@ public class RecordListViewModel extends BaseViewModel {
         Context context = view.getContext();
         Intent foodList = new Intent(context, FoodListActivity.class);
         context.startActivity(foodList);
-
     }
 }

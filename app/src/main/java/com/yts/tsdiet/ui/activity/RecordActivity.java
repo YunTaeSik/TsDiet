@@ -76,11 +76,15 @@ public class RecordActivity extends BaseActivity {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 boolean isScrollDown = dy > 0;
-                if (isScrollDown) {
-                    binding.btnAdd.hide();
-                } else {
-                    binding.btnAdd.show();
+                if (model != null && model.isFloatingVisible != null && model.isFloatingVisible.getValue() != null &&
+                        model.isFloatingVisible.getValue()) {
+                    if (isScrollDown) {
+                        binding.btnAdd.hide();
+                    } else {
+                        binding.btnAdd.show();
+                    }
                 }
+
             }
         });
     }
@@ -101,6 +105,7 @@ public class RecordActivity extends BaseActivity {
                     if (model != null) {
                         model.addRecordFood(recordFood);
                     }
+                    binding.btnAdd.show();
                 }
             }
         }

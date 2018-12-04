@@ -18,7 +18,50 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:tint="@color/textColor"
+                app:srcCompat="@drawable/ic_remove_circle_outline_black_24dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    setRecordFoodListTitleText="@{model.mRecordFood}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="김치찌개 361kcal" />
+
+                <TextView
+                    setRecordFoodListSubTitleText="@{model.mRecordFood}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="12sp"
+                    tools:text="탄수화물 : 200g 단백질 : 200g 지방 : 200g\n수량 : 1 개 중량 : 200g" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            style="@style/lineView"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
     </LinearLayout>
+
 
 </layout>

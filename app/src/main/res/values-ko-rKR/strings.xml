@@ -8,6 +8,7 @@
     <string name="record">"기록"</string>
     <string name="weight">"몸무게"</string>
     <string name="weight_kg">"몸무게 (kg)"</string>
+    <string name="weight_two">"중량"</string>
     <string name="weight_two_g">"중량 (g)"</string>
     <string name="nutrient">"영양소"</string>
     <string name="nutrient_g">"영양소 (g)"</string>
@@ -17,7 +18,9 @@
     <string name="calorie">"칼로리"</string>
     <string name="diet">"식단"</string>
     <string name="list">"목록"</string>
-    <string name="quantity">"수량 (개)"</string>
+    <string name="quantity">"수량"</string>
+    <string name="quantity_count">"수량 (개)"</string>
+    <string name="count">"개"</string>
 
     <string name="total_calorie_kcal">"총 칼로리 (Kcal)"</string>
     <!--hint-->

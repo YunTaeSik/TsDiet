@@ -20,7 +20,6 @@ public class RealmService {
 
     public static List<Food> getFoodList(Realm realm) {
         return realm.copyFromRealm(realm.where(Food.class).findAll());
-
     }
 
     public static RealmResults<Food> getFoodListRealmResults(Realm realm) {
@@ -31,7 +30,6 @@ public class RealmService {
         List<Food> foodList = new ArrayList<>();
         foodList.addAll(realm.copyFromRealm(realm.where(Food.class).equalTo("name", search).findAll()));
         foodList.addAll(realm.copyFromRealm(realm.where(Food.class).notEqualTo("name", search).contains("name", search).findAll()));
-
         return foodList;
     }
 

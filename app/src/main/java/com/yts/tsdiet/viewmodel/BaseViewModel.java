@@ -28,9 +28,9 @@ public class BaseViewModel extends ViewModel {
 
     public void hideKeyboard(View view) {
         Context context = view.getContext();
-        InputMethodManager inputMethodManager = (InputMethodManager)context. getSystemService(INPUT_METHOD_SERVICE);
-        if (inputMethodManager != null &&view != null) {
-            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null && view != null) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
         }
     }
 
