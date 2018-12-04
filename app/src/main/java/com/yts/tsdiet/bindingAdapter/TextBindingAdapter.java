@@ -16,6 +16,16 @@ import java.util.Calendar;
 import androidx.databinding.BindingAdapter;
 
 public class TextBindingAdapter {
+    @BindingAdapter({"setWeightText"})
+    public static void setWeightText(TextView view, double value) {
+        try {
+            String text = String.valueOf(value);
+            view.setText(text);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @BindingAdapter({"setText"})
     public static void setText(TextView view, double value) {
         try {

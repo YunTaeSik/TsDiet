@@ -23,6 +23,14 @@ public class Record extends RealmObject {
     private RealmList<RecordFood> recordFoodList = new RealmList<>();
 
     public Record() {
+
+    }
+
+    public Record(int year, int month, int day) {
+        createTime = System.currentTimeMillis();
+        this.year = year;
+        this.month = month;
+        this.day = day;
     }
 
     public void addRecordFood(RecordFood recordFood) {
@@ -31,6 +39,14 @@ public class Record extends RealmObject {
         totalCarbohydrate = totalCarbohydrate + recordFood.getCarbohydrate();
         totalProtein = totalProtein + recordFood.getProtein();
         totalFat = totalFat + recordFood.getFat();
+    }
+
+    public void removeRecordFood(RecordFood recordFood, int position) {
+        recordFoodList.remove(position);
+        totalKcal = totalKcal - recordFood.getKcal();
+        totalCarbohydrate = totalCarbohydrate - recordFood.getCarbohydrate();
+        totalProtein = totalProtein - recordFood.getProtein();
+        totalFat = totalFat - recordFood.getFat();
     }
 
     public long getCreateTime() {

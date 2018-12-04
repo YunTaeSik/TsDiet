@@ -40,6 +40,7 @@
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatEditText
+                setWeightText="@{model.mWeight}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -48,6 +49,7 @@
                 android:hint="@string/hint_weight"
                 android:imeOptions="actionDone"
                 android:inputType="numberDecimal"
+                android:onTextChanged="@{(text, start, before, count)->model.weight(text)}"
                 android:padding="12dp"
                 android:singleLine="true" />
 

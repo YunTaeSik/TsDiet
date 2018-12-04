@@ -106,6 +106,12 @@ public class RecordActivity extends BaseActivity {
                         model.addRecordFood(recordFood);
                     }
                     binding.btnAdd.show();
+                } else if (action.equals(SendBroadcast.REMOVE_RECORD_FOOD)) { //저장
+                    RecordFood recordFood = intent.getParcelableExtra(Keys.RECORD_FOOD);
+                    int position = intent.getIntExtra(Keys.POSITION, 0);
+                    if (model != null) {
+                        model.removeRecordFood(recordFood, position);
+                    }
                 }
             }
         }
@@ -115,6 +121,7 @@ public class RecordActivity extends BaseActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(SendBroadcast.SELECT_FOOD);
         intentFilter.addAction(SendBroadcast.SAVE_RECORD_FOOD);
+        intentFilter.addAction(SendBroadcast.REMOVE_RECORD_FOOD);
         return intentFilter;
     }
 

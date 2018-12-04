@@ -32,7 +32,6 @@ public class RecordAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-
     @Override
     public int getItemViewType(int position) {
         Object item = mRecordList.get(position);
@@ -71,6 +70,7 @@ public class RecordAdapter extends RecyclerView.Adapter {
             RecordFoodViewModel model = new RecordFoodViewModel();
             if (item instanceof RecordFood) {
                 model.setRecordFood((RecordFood) item);
+                model.setPosition(position);
             }
             holder.setViewModel(model);
         }

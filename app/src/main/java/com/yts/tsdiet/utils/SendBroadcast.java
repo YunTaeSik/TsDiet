@@ -9,6 +9,7 @@ import com.yts.tsdiet.data.model.RecordFood;
 public class SendBroadcast {
     public static final String SELECT_FOOD = "selectFood";
     public static final String SAVE_RECORD_FOOD = "saveRecordFood";
+    public static final String REMOVE_RECORD_FOOD = "removeRecordFood";
 
     public static void selectFood(Context context, Food food) {
         Intent send = new Intent(SELECT_FOOD);
@@ -19,6 +20,13 @@ public class SendBroadcast {
     public static void saveRecordFood(Context context, RecordFood recordFood) {
         Intent send = new Intent(SAVE_RECORD_FOOD);
         send.putExtra(Keys.RECORD_FOOD, recordFood);
+        context.sendBroadcast(send);
+    }
+
+    public static void removeRecordFood(Context context, RecordFood recordFood, int position) {
+        Intent send = new Intent(REMOVE_RECORD_FOOD);
+        send.putExtra(Keys.RECORD_FOOD, recordFood);
+        send.putExtra(Keys.POSITION, position - 1);
         context.sendBroadcast(send);
     }
 

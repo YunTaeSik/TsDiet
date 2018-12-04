@@ -42,11 +42,17 @@ public class RealmService {
     public static Record getRecord(Realm realm, int year, int month, int day) {
         Record record = realm.where(Record.class).equalTo("year", year).equalTo("month", month).equalTo("day", day).findFirst();
         if (record == null) {
-            record = new Record();
+            record = new Record(year, month, day);
         } else {
             record = realm.copyFromRealm(record);
         }
         return record;
+    }
+
+    public static void saveRecord(Realm realm, Record record) {
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(record);
+        realm.commitTransaction();
     }
 
 }

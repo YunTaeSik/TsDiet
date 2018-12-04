@@ -18,9 +18,15 @@ public class RecordFoodViewModel extends BaseViewModel {
     public TSLiveData<Double> mSize = new TSLiveData<>(1.0);
 
 
+    public TSLiveData<Integer> mPosition = new TSLiveData<>(0);
+
+    public void setPosition(int position) {
+        mPosition.setValue(position);
+    }
+
+
     public void setFood(Food food) {
         mFood.setValue(food);
-
 
         RecordFood recordFood = new RecordFood(food.getName(), food.getSize(), food.getKcal(), food.getCarbohydrate(), food.getProtein(), food.getFat(),
                 food.getSugars(), food.getSalt(), food.getCholesterol(), food.getSaturated(), food.getTrans());
@@ -107,5 +113,10 @@ public class RecordFoodViewModel extends BaseViewModel {
         if (context instanceof Activity) {
             ((Activity) context).finish();
         }
+    }
+
+    public void remove(View view) {
+        Context context = view.getContext();
+        SendBroadcast.removeRecordFood(context, mRecordFood.getValue(), mPosition.getValue());
     }
 }

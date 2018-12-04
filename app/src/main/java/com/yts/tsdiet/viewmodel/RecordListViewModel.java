@@ -1,5 +1,6 @@
 package com.yts.tsdiet.viewmodel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -49,9 +50,33 @@ public class RecordListViewModel extends BaseViewModel {
         }
     }
 
+    public void removeRecordFood(RecordFood recordFood, int position) {
+        if (mRecordList.getValue() != null) {
+            List<Object> recordList = mRecordList.getValue();
+            if (recordList.size() > 0) {
+                Record record = (Record) recordList.get(0);
+                record.removeRecordFood(recordFood, position);
+                setRecordList(record);
+            }
+        }
+    }
+
     public void startFoodList(View view) {
         Context context = view.getContext();
         Intent foodList = new Intent(context, FoodListActivity.class);
         context.startActivity(foodList);
+    }
+
+    public void save(View view) {
+        if (mRecordList.getValue() != null) {
+            List<Object> recordList = mRecordList.getValue();
+            if (recordList.size() > 0) {
+                Record record = (Record) recordList.get(0);
+                RealmService.saveRecord(Realm.getDefaultInstance(), record);
+            }
+        }
+        if (view.getContext() instanceof Activity) {
+            ((Activity) view.getContext()).finish();
+        }
     }
 }
