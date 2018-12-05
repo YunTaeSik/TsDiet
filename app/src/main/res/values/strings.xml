@@ -4,6 +4,7 @@
 
     <string name="chart">"Chart"</string>
     <string name="calendar">"Calendar"</string>
+    <string name="setting">"Setting"</string>
     <string name="save">"Save"</string>
     <string name="record">"Record"</string>
     <string name="weight">"Weight"</string>

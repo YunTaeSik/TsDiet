@@ -1,6 +1,8 @@
 package com.yts.tsdiet.bindingAdapter;
 
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,6 +32,21 @@ public class VisibleBindingAdapter {
             view.show();
         } else {
             view.hide();
+        }
+    }
+
+    @BindingAdapter("setVisible")
+    public static void setVisible(LinearLayout view, Record record) {
+
+        try {
+            boolean visible = record != null;
+            if (visible) {
+                view.setVisibility(View.VISIBLE);
+            } else {
+                view.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

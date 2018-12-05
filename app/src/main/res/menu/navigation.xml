@@ -11,6 +11,11 @@
         android:checked="true"
         android:icon="@drawable/ic_show_chart_black_24dp"
         android:title="@string/chart" />
+    <item
+        android:id="@+id/navigation_setting"
+        android:checked="true"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/setting" />
 
 
 </menu>

@@ -10,6 +10,7 @@ import com.yts.tsdiet.data.model.Record;
 import com.yts.tsdiet.data.model.RecordFood;
 import com.yts.tsdiet.realm.RealmService;
 import com.yts.tsdiet.ui.activity.FoodListActivity;
+import com.yts.tsdiet.utils.SendBroadcast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +76,7 @@ public class RecordListViewModel extends BaseViewModel {
                 RealmService.saveRecord(Realm.getDefaultInstance(), record);
             }
         }
+        SendBroadcast.saveRecord(view.getContext());
         if (view.getContext() instanceof Activity) {
             ((Activity) view.getContext()).finish();
         }
