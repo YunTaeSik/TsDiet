@@ -28,4 +28,19 @@
         <item name="android:background">@color/lineColorDark</item>
     </style>
 
+
+    <style name="MonthPickerDialogStyle">
+        <item name="monthBgColor">@color/white</item>
+        <item name="monthBgSelectedColor">@color/textColor</item>
+        <item name="monthFontColorSelected">@color/colorAccent</item>
+        <item name="monthFontColorNormal">@color/textColorSecondary</item>
+        <item name="monthFontColorDisabled">@color/textColorSecondary</item>
+
+        <item name="headerBgColor">@color/colorAccent</item>
+        <item name="headerFontColorSelected">@color/textColor</item>
+        <item name="headerFontColorNormal">@color/textColor</item>
+        <item name="headerTitleColor">@color/textColor</item>
+
+        <item name="dialogActionButtonColor">@color/textColor</item>
+    </style>
 </resources>

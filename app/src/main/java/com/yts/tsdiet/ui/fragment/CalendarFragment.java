@@ -6,23 +6,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.yts.tsdiet.R;
-import com.yts.tsdiet.data.model.Food;
-import com.yts.tsdiet.data.model.RecordFood;
 import com.yts.tsdiet.databinding.CalendarListBinding;
-import com.yts.tsdiet.ui.activity.RecordFoodActivity;
 import com.yts.tsdiet.ui.adapter.NewCalendarAdapter;
-import com.yts.tsdiet.utils.Keys;
 import com.yts.tsdiet.utils.SendBroadcast;
 import com.yts.tsdiet.viewmodel.CalendarListViewModel;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -87,10 +81,12 @@ public class CalendarFragment extends Fragment {
                 } else {
                     StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL);
                     adapter = new NewCalendarAdapter(objects);
-                    //      adapter.setHasStableIds(true);
+                    adapter.setHasStableIds(true);
                     view.setLayoutManager(manager);
                     view.setAdapter(adapter);
-                    view.scrollToPosition(adapter.getItemCount() / 2);
+                    if (model.mCenterPosition >= 0) {
+                        view.scrollToPosition(model.mCenterPosition);
+                    }
                 }
             }
         });
