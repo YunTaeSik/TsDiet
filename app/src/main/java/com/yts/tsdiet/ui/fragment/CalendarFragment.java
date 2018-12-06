@@ -81,7 +81,6 @@ public class CalendarFragment extends Fragment {
                 } else {
                     StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL);
                     adapter = new NewCalendarAdapter(objects);
-                    adapter.setHasStableIds(true);
                     view.setLayoutManager(manager);
                     view.setAdapter(adapter);
                     if (model.mCenterPosition >= 0) {

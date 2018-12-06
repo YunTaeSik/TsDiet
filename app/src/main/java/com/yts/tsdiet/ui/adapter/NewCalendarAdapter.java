@@ -47,23 +47,7 @@ public class NewCalendarAdapter extends RecyclerView.Adapter {
 
         }
     }
-/*
 
-    @Override
-    public long getItemId(int position) {
-        Object item = mCalendarList.get(position);
-        if (item instanceof Long) {
-            return (Long) item;
-        } else if (item instanceof String) {
-            return (item).hashCode();
-        } else if (item instanceof Calendar) {
-            return ((Calendar) item).getTimeInMillis();
-        } else {
-            return position;
-        }
-    }
-
-*/
 
     @NonNull
     @Override
