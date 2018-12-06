@@ -2,6 +2,8 @@ package com.yts.tsdiet.data.model;
 
 import com.airbnb.lottie.animation.content.Content;
 
+import java.util.GregorianCalendar;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -10,6 +12,7 @@ public class Record extends RealmObject {
     @PrimaryKey
     private long createTime;
 
+    private long dateTime;
     private int year;
     private int month;
     private int day;
@@ -31,6 +34,8 @@ public class Record extends RealmObject {
         this.year = year;
         this.month = month;
         this.day = day;
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(year, month, day);
+        dateTime = gregorianCalendar.getTimeInMillis();
     }
 
     public void addRecordFood(RecordFood recordFood) {
@@ -55,6 +60,14 @@ public class Record extends RealmObject {
 
     public void setCreateTime(long createTime) {
         this.createTime = createTime;
+    }
+
+    public long getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(long dateTime) {
+        this.dateTime = dateTime;
     }
 
     public int getYear() {

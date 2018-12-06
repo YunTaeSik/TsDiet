@@ -18,6 +18,10 @@ public class DateFormat {
 
     public final static String WRITE_RECEIVE_FORMAT = "yyyy  MM.dd E";
 
+    public final static String CHART_X_FORMAT = "MM/dd";
+    public final static String CHART_XOLD_FORMAT = "yyyy/MM/dd";
+
+
     public static String getDate(long date) {
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);
         Date d = new Date(date);
@@ -25,9 +29,26 @@ public class DateFormat {
     }
 
     public static String getDate(long date, String pattern) {
-        SimpleDateFormat formatter = new SimpleDateFormat(pattern, Locale.ENGLISH);
-        Date d = new Date(date);
-        return formatter.format(d).toUpperCase();
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat(pattern, Locale.ENGLISH);
+            Date d = new Date(date);
+            return formatter.format(d).toUpperCase();
+        } catch (Exception e) {
+            return " ";
+        }
+    }
+
+    public static String getXData(long date) {
+        Calendar current = Calendar.getInstance();
+        Calendar dateCalendar = Calendar.getInstance();
+        dateCalendar.setTimeInMillis(date);
+
+        String pattern = CHART_XOLD_FORMAT;
+        if (current.get(Calendar.YEAR) == dateCalendar.get(Calendar.YEAR)) {
+            pattern = CHART_X_FORMAT;
+        }
+        return getDate(date, pattern);
+
     }
 
     public static Calendar getCalendar(long date) {

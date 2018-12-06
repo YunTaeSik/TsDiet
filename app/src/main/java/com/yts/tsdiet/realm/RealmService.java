@@ -54,6 +54,10 @@ public class RealmService {
         return record;
     }
 
+    public static List<Record> getFastRecordList(Realm realm) {
+        return realm.where(Record.class).sort("dateTime").findAll();
+    }
+
     public static void saveRecord(Realm realm, Record record) {
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(record);
