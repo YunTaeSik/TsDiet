@@ -2,8 +2,12 @@
     <string name="app_name">TSDiet</string>
 
 
+    <string name="all">"All"</string>
     <string name="chart">"Chart"</string>
     <string name="calendar">"Calendar"</string>
+    <string name="cancel">"Cancel"</string>
+    <string name="ok">"Ok"</string>
+    <string name="select">"Select"</string>
     <string name="setting">"Setting"</string>
     <string name="save">"Save"</string>
     <string name="record">"Record"</string>
@@ -23,6 +27,9 @@
     <string name="quantity_count">"Quantity"</string>
     <string name="count">""</string>
 
+    <string name="set_range">"Set Range"</string>
+    <string name="this_month">"This Month"</string>
+    <string name="this_year">"This Year"</string>
     <string name="total_calorie_kcal">"Total Calorie (Kcal)"</string>
 
     <!--hint-->

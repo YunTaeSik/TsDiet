@@ -2,8 +2,12 @@
 <resources>
     <string name="app_name">TSDiet</string>
 
+    <string name="all">"전체"</string>
     <string name="chart">"차트"</string>
     <string name="calendar">"달력"</string>
+    <string name="cancel">"취소"</string>
+    <string name="ok">"확인"</string>
+    <string name="select">"선택"</string>
     <string name="setting">"설정"</string>
     <string name="save">"저장"</string>
     <string name="record">"기록"</string>
@@ -23,6 +27,9 @@
     <string name="quantity_count">"수량 (개)"</string>
     <string name="count">"개"</string>
 
+    <string name="set_range">"범위 설정"</string>
+    <string name="this_month">"이번 달"</string>
+    <string name="this_year">"이번 연도"</string>
     <string name="total_calorie_kcal">"총 칼로리 (Kcal)"</string>
     <!--hint-->
     <string name="hint_weight">"몸무게를 입력해주세요."</string>

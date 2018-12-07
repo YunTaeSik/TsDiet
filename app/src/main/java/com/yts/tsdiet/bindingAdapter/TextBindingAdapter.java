@@ -46,6 +46,29 @@ public class TextBindingAdapter {
         }
     }
 
+    @BindingAdapter({"setDateRangeText"})
+    public static void setDateRangeText(TextView view, Integer typeInteger) {
+        Context context = view.getContext();
+        int type = typeInteger != null ? typeInteger : 1;
+        String text;
+        switch (type) {
+            case 0:
+                text = context.getString(R.string.this_month);
+                break;
+            case 1:
+                text = context.getString(R.string.this_year);
+                break;
+            case 2:
+                text = context.getString(R.string.all);
+                break;
+            default:
+                text = context.getString(R.string.this_year);
+                break;
+        }
+        view.setText(text);
+
+    }
+
 
     @BindingAdapter({"setCalendarHeaderText"})
     public static void setCalendarHeaderText(TextView view, Long date) {
