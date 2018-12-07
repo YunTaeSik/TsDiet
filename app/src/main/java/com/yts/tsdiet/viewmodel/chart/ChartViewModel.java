@@ -1,11 +1,8 @@
 package com.yts.tsdiet.viewmodel.chart;
 
-import android.view.View;
-
 import com.yts.tsdiet.data.TSLiveData;
 import com.yts.tsdiet.data.model.Record;
 import com.yts.tsdiet.realm.RealmService;
-import com.yts.tsdiet.ui.dialog.DateRangeDialog;
 import com.yts.tsdiet.viewmodel.BaseViewModel;
 
 import java.util.List;
@@ -18,12 +15,16 @@ public class ChartViewModel extends BaseViewModel {
     public TSLiveData<Integer> mDateRangeType = new TSLiveData<>(1);
 
     public void initData() {
-        mDateRangeType.setValue(1);
-        mRecordList.setValue(RealmService.getFastRecordList(Realm.getDefaultInstance()));
+        setDateRange(1);
+    }
+
+    public void refreshData() {
+        mRecordList.setValue(RealmService.getFastRecordList(Realm.getDefaultInstance(), mDateRangeType.getValue()));
     }
 
     public void setDateRange(int value) {
         mDateRangeType.setValue(value);
+        mRecordList.setValue(RealmService.getFastRecordList(Realm.getDefaultInstance(), value));
     }
 
 

@@ -34,7 +34,7 @@ public class Record extends RealmObject {
         this.year = year;
         this.month = month;
         this.day = day;
-        GregorianCalendar gregorianCalendar = new GregorianCalendar(year, month, day);
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(year, month, day, 0, 0, 0);
         dateTime = gregorianCalendar.getTimeInMillis();
     }
 

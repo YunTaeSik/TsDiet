@@ -12,6 +12,7 @@ import com.yts.tsdiet.utils.ValueFormat;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import androidx.databinding.BindingAdapter;
 
@@ -85,7 +86,8 @@ public class TextBindingAdapter {
     public static void setDayText(TextView view, Calendar calendar) {
         try {
             if (calendar != null) {
-                view.setText(DateFormat.getDate(calendar.getTimeInMillis(), DateFormat.DAY_FORMAT));
+                GregorianCalendar gregorianCalendar = new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+                view.setText(DateFormat.getDate(gregorianCalendar.getTimeInMillis(), DateFormat.DAY_FORMAT));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,9 +105,6 @@ public class TextBindingAdapter {
             double fat = record.getTotalFat();
 
             double total = carbohydrate + protein + fat == 0.0 ? 100.0 : carbohydrate + protein + fat;
-
-
-            DecimalFormat precision = new DecimalFormat("0.0");
 
             if (type.equals(Type.CARBOHYDRATE)) {
                 text = context.getString(R.string.carbohydrate) + " (" + ValueFormat.format((carbohydrate / total) * (100.0)) + "%)";

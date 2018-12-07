@@ -5,6 +5,7 @@ import com.yts.tsdiet.data.model.Food;
 import com.yts.tsdiet.data.model.Record;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -54,8 +55,15 @@ public class RealmService {
         return record;
     }
 
-    public static List<Record> getFastRecordList(Realm realm) {
-        return realm.where(Record.class).sort("dateTime").findAll();
+    public static List<Record> getFastRecordList(Realm realm, int type) {
+        Calendar calendar = Calendar.getInstance();
+        if (type == 0) {
+            return realm.where(Record.class).equalTo("year", calendar.get(Calendar.YEAR)).equalTo("month", calendar.get(Calendar.MONTH)).sort("dateTime").findAll();
+        } else if (type == 1) {
+            return realm.where(Record.class).equalTo("year", calendar.get(Calendar.YEAR)).sort("dateTime").findAll();
+        } else {
+            return realm.where(Record.class).sort("dateTime").findAll();
+        }
     }
 
     public static void saveRecord(Realm realm, Record record) {
