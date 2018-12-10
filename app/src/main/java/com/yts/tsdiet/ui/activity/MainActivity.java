@@ -9,6 +9,7 @@ import com.yts.tsdiet.R;
 import com.yts.tsdiet.databinding.MainViewBinding;
 import com.yts.tsdiet.ui.fragment.CalendarFragment;
 import com.yts.tsdiet.ui.fragment.ChartFragment;
+import com.yts.tsdiet.ui.fragment.SettingFragment;
 import com.yts.tsdiet.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    private String[] tags = {"CALENDAR", "CHART"};
+    private String[] tags = {"CALENDAR", "CHART", "SETTING"};
     private String mCurrentFragmentTag = "CALENDAR";
 
 
@@ -49,6 +50,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             case R.id.navigation_chart:
                 moveFragment(tags[1]);
                 return true;
+            case R.id.navigation_setting:
+                moveFragment(tags[2]);
+                return true;
+
         }
         return false;
     }
@@ -57,6 +62,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(CalendarFragment.newInstance());
         fragments.add(ChartFragment.newInstance());
+        fragments.add(SettingFragment.newInstance());
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
