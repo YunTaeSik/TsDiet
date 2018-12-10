@@ -9,6 +9,7 @@ import com.yts.tsdiet.R;
 import com.yts.tsdiet.databinding.SettingBinding;
 import com.yts.tsdiet.viewmodel.setting.SettingViewModel;
 
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -24,7 +25,6 @@ public class SettingFragment extends Fragment {
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
@@ -33,5 +33,11 @@ public class SettingFragment extends Fragment {
         binding.setLifecycleOwner(this);
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        model.setVersion(getContext());
     }
 }

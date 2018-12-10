@@ -11,6 +11,7 @@ public class SendBroadcast {
     public static final String SAVE_RECORD_FOOD = "saveRecordFood";
     public static final String SAVE_RECORD = "saveRecord";
     public static final String REMOVE_RECORD_FOOD = "removeRecordFood";
+    public static final String SAVE_GOAL = "saveGoal";
 
     public static void selectFood(Context context, Food food) {
         Intent send = new Intent(SELECT_FOOD);
@@ -33,6 +34,11 @@ public class SendBroadcast {
 
     public static void saveRecord(Context context) {
         Intent send = new Intent(SAVE_RECORD);
+        context.sendBroadcast(send);
+    }
+
+    public static void saveGoal(Context context) {
+        Intent send = new Intent(SAVE_GOAL);
         context.sendBroadcast(send);
     }
 

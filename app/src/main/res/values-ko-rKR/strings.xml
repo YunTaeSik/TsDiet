@@ -26,11 +26,23 @@
     <string name="quantity">"수량"</string>
     <string name="quantity_count">"수량 (개)"</string>
     <string name="count">"개"</string>
+    <string name="basics">"기본"</string>
+    <string name="invite">"초대하기"</string>
 
     <string name="set_range">"범위 설정"</string>
     <string name="this_month">"이번 달"</string>
     <string name="this_year">"이번 연도"</string>
+    <string name="version_information">"버전 정보"</string>
+    <string name="service_center">"고객센터"</string>
+    <string name="contact_us">"문의하기"</string>
+    <string name="add_review">"리뷰 달기"</string>
+    <string name="goal_setting">"목표 설정"</string>
+
     <string name="total_calorie_kcal">"총 칼로리 (Kcal)"</string>
+
+    <string name="target_weight_kg">"목표 몸무게 (kg)"</string>
+    <string name="target_calorie_kcal">"하루 목표 칼로리 (Kcal)"</string>
+
     <!--hint-->
     <string name="hint_weight">"몸무게를 입력해주세요."</string>
     <string name="hint_weight_two">"중량을 입력해주세요."</string>
@@ -39,4 +51,12 @@
 
     <!--empty-->
     <string name="empty_chart">"데이터가 없습니다. 식단을 입력해주세요."</string>
+
+    <!--error-->
+    <string name="error_email">"설치된 이메일 프로그램이 없습니다."</string>
+
+    <string name="shared_title">초대하기</string>
+    <string name="shared_message">지인에게 어플을 초대합니다! :)</string>
+    <string name="shared_call_to_action_text">설치하기</string>
+
 </resources>

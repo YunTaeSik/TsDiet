@@ -16,6 +16,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="sn3d4.app.goo.gl/TSDIET"
+                    android:scheme="https" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.RecordActivity"
@@ -25,6 +35,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.RecordFoodActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.GoalSettingActivity"
             android:screenOrientation="portrait" />
     </application>
 

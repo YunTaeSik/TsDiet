@@ -17,6 +17,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!--헤더-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,10 +32,96 @@
                 android:padding="16dp"
                 android:text="@string/setting"
                 android:textSize="18sp" />
+        </LinearLayout>
+        <!--기본-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/basics"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
+        <!--버젼정보-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:text="@string/version_information"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@{model.version}"
+                android:textSize="16sp" />
         </LinearLayout>
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:selectableItemBackgroundBorderless"
+            android:onClick="@{(v)->model.startGoalSetting(v)}"
+            android:padding="16dp"
+            android:text="@string/goal_setting"
+            android:textSize="16sp" />
+
+        <View
+            style="@style/lineView"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
+
+
+        <!--고객센터-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/service_center"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:selectableItemBackgroundBorderless"
+            android:onClick="@{(v)->model.onClickContactUs(v)}"
+            android:padding="16dp"
+            android:text="@string/contact_us"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:selectableItemBackgroundBorderless"
+            android:onClick="@{(v)->model.onClickReview(v)}"
+            android:padding="16dp"
+            android:text="@string/add_review"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:selectableItemBackgroundBorderless"
+            android:onClick="@{(v)->model.onClickInvite(v)}"
+            android:padding="16dp"
+            android:text="@string/invite"
+            android:textSize="16sp" />
     </LinearLayout>
+
 </layout>

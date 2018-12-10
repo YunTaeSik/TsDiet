@@ -111,7 +111,7 @@ public class CalendarFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (action != null) {
-                if (action.equals(SendBroadcast.SAVE_RECORD)) {
+                if (action.equals(SendBroadcast.SAVE_RECORD) || action.equals(SendBroadcast.SAVE_GOAL)) {
                     if (model != null) {
                         model.initCalendarList();
                     }
@@ -123,6 +123,7 @@ public class CalendarFragment extends Fragment {
     private IntentFilter getIntentFilter() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(SendBroadcast.SAVE_RECORD);
+        intentFilter.addAction(SendBroadcast.SAVE_GOAL);
         return intentFilter;
     }
 

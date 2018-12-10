@@ -28,6 +28,12 @@ public class BaseViewModel extends ViewModel {
         }
     }
 
+    public void finish(Context context) {
+        if (context instanceof AppCompatActivity) {
+            ((AppCompatActivity) context).onBackPressed();
+        }
+    }
+
     public void hideKeyboard(View view) {
         Context context = view.getContext();
         InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);

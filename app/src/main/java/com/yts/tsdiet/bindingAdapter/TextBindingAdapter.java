@@ -47,6 +47,16 @@ public class TextBindingAdapter {
         }
     }
 
+    @BindingAdapter({"setGoalText"})
+    public static void setGoalText(TextView view, float value) {
+        try {
+            String text = String.valueOf(value);
+            view.setText(text);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @BindingAdapter({"setDateRangeText"})
     public static void setDateRangeText(TextView view, Integer typeInteger) {
         Context context = view.getContext();

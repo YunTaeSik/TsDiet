@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="GoalSettingBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="com.yts.tsdiet.viewmodel.setting.GoalSettingViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--헤더-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="?android:selectableItemBackgroundBorderless"
+                android:onClick="@{(v)->model.finish(v)}"
+                android:padding="16dp"
+                app:srcCompat="@drawable/ic_close_black_24dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="3.0"
+                android:text="@string/goal_setting"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="?android:selectableItemBackgroundBorderless"
+                android:onClick="@{(v)->model.save(v)}"
+                android:padding="16dp"
+                android:text="@string/save"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/target_weight_kg"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_weight"
+                setGoalText="@{model.initGoalWeight}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/background_edit"
+                android:hint="@string/hint_weight"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:onTextChanged="@{(text, start, before, count)->model.weight(text)}"
+                android:padding="12dp"
+                android:singleLine="true" />
+
+            <View style="@style/lineView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/target_calorie_kcal"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_kcal"
+                setGoalText="@{model.initGoalkcal}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/background_edit"
+                android:hint="@string/hint_weight"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:onTextChanged="@{(text, start, before, count)->model.kcal(text)}"
+                android:padding="12dp"
+                android:singleLine="true" />
+
+            <View style="@style/lineView" />
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>
