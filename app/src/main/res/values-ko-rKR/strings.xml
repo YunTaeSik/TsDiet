@@ -36,4 +36,7 @@
     <string name="hint_weight_two">"중량을 입력해주세요."</string>
     <string name="hint_quantity">"수량을 입력해주세요."</string>
     <string name="hint_search_food">"음식명을 입력해주세요."</string>
+
+    <!--empty-->
+    <string name="empty_chart">"데이터가 없습니다. 식단을 입력해주세요."</string>
 </resources>

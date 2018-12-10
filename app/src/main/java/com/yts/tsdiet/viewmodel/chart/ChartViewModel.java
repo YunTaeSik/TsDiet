@@ -20,7 +20,7 @@ public class ChartViewModel extends BaseViewModel {
     }
 
     public void refreshData() {
-        mRecordList.setValue(RealmService.getFastRecordList(Realm.getDefaultInstance(), mDateRangeType.getValue()));
+        setDateRange(mDateRangeType.getValue());
     }
 
     public void setDateRange(int value) {

@@ -138,12 +138,12 @@ public class ChartFragment extends Fragment implements View.OnClickListener {
             LineDataSet weightLineDataSet = null;
             if (model != null && model.mKindType != null && model.mKindType.getValue() != null && (model.mKindType.getValue() == 0 || model.mKindType.getValue() == 2)) {
                 weightLineDataSet = new LineDataSet(weightValues, getString(R.string.weight_kg)); //LineDataSet 선언
-                weightLineDataSet.setColor(ContextCompat.getColor(getContext(), R.color.purple)); //LineChart에서 Line Color 설정
-                weightLineDataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.purple)); // LineChart에서 Line Circle Color 설정
+                weightLineDataSet.setColor(ContextCompat.getColor(getContext(), R.color.gray)); //LineChart에서 Line Color 설정
+                weightLineDataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.gray)); // LineChart에서 Line Circle Color 설정
                 weightLineDataSet.setCircleHoleColor(ContextCompat.getColor(getContext(), R.color.white)); // LineChart에서 Line Hole Circle Color 설정
-                weightLineDataSet.setLineWidth(2f);
-                weightLineDataSet.setCircleHoleRadius(2f);
-                weightLineDataSet.setCircleRadius(4f);
+                weightLineDataSet.setLineWidth(3f);
+                weightLineDataSet.setCircleHoleRadius(3f);
+                weightLineDataSet.setCircleRadius(5f);
             }
 
             //칼로리
@@ -153,9 +153,9 @@ public class ChartFragment extends Fragment implements View.OnClickListener {
                 kcalLineDataSet.setColor(ContextCompat.getColor(getContext(), R.color.blueDark)); //LineChart에서 Line Color 설정
                 kcalLineDataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.blueDark)); // LineChart에서 Line Circle Color 설정
                 kcalLineDataSet.setCircleHoleColor(ContextCompat.getColor(getContext(), R.color.white)); // LineChart에서 Line Hole Circle Color 설정
-                kcalLineDataSet.setLineWidth(2f);
-                kcalLineDataSet.setCircleHoleRadius(2f);
-                kcalLineDataSet.setCircleRadius(4f);
+                kcalLineDataSet.setLineWidth(3);
+                kcalLineDataSet.setCircleHoleRadius(3f);
+                kcalLineDataSet.setCircleRadius(5f);
             }
 
             LineData lineData = new LineData(); //LineDataSet을 담는 그릇 여러개의 라인 데이터가 들어갈 수 있습니다.

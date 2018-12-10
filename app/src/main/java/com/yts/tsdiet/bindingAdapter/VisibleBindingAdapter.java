@@ -2,21 +2,20 @@ package com.yts.tsdiet.bindingAdapter;
 
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.yts.tsdiet.data.model.Record;
 
 import java.util.List;
 
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.databinding.BindingAdapter;
 
 public class VisibleBindingAdapter {
 
     @BindingAdapter("setVisible")
-    public static void setVisible(AppCompatImageView view, Boolean visibleBoolean) {
+    public static void setVisible(View view, Boolean visibleBoolean) {
         boolean visible = visibleBoolean != null ? visibleBoolean : false;
         if (visible) {
             view.setVisibility(View.VISIBLE);
@@ -24,6 +23,17 @@ public class VisibleBindingAdapter {
             view.setVisibility(View.GONE);
         }
     }
+
+    @BindingAdapter("setVisible")
+    public static void setVisible(LineChart view, Boolean visibleBoolean) {
+        boolean visible = visibleBoolean != null ? visibleBoolean : false;
+        if (visible) {
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.GONE);
+        }
+    }
+
 
     @BindingAdapter("setVisible")
     public static void setVisible(FloatingActionButton view, Boolean visibleBoolean) {

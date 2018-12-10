@@ -38,4 +38,8 @@
     <string name="hint_quantity">"Please enter quantity."</string>
     <string name="hint_search_food">"Please enter the name of the food."</string>
 
+
+    <!--empty-->
+    <string name="empty_chart">"No data. Please enter your diet."</string>
+
 </resources>

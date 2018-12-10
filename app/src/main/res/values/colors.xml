@@ -20,6 +20,7 @@
     <color name="blueDark">#6ABEE3</color>
     <color name="red">#FF3543</color>
     <color name="purple">#852EF6</color>
+    <color name="gray">#E5DEED</color>
 
     <color name="lineColorEdit">#FCB8AB</color>
 </resources>
