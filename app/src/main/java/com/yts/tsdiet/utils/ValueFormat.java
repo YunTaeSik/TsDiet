@@ -11,4 +11,6 @@ public class ValueFormat {
             return "0.0";
         }
     }
+
+
 }

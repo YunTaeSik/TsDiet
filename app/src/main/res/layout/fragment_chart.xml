@@ -31,20 +31,34 @@
                 android:text="@string/chart"
                 android:textSize="18sp" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                setKindText="@{model.mKindType}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_brown_12dp"
+                android:drawableRight="@drawable/ic_arrow_drop_down_brown_12dp"
+                android:drawablePadding="2dp"
+                android:foreground="?android:selectableItemBackgroundBorderless"
+                android:onClick="@{()->model.changeKind()}"
+                android:padding="8dp"
+                android:text="@string/weight" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_date_range"
                 setDateRangeText="@{model.mDateRangeType}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_arrow_drop_down_black_12dp"
-                android:drawableRight="@drawable/ic_arrow_drop_down_black_12dp"
-                android:drawablePadding="4dp"
-                android:drawableTint="@color/textColor"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_brown_12dp"
+                android:drawableRight="@drawable/ic_arrow_drop_down_brown_12dp"
+                android:drawablePadding="2dp"
                 android:foreground="?android:selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:padding="16dp"
-                android:text="전체기간" />
+                android:padding="8dp"
+                android:text="@string/all" />
 
         </LinearLayout>
 

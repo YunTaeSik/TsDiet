@@ -48,6 +48,7 @@ public class DateRangeDialog extends Dialog implements View.OnClickListener {
         binding.btnMonth.setOnClickListener(this);
         binding.btnYear.setOnClickListener(this);
         binding.btnAll.setOnClickListener(this);
+        binding.btnCancel.setOnClickListener(this);
     }
 
     @Override
@@ -63,6 +64,9 @@ public class DateRangeDialog extends Dialog implements View.OnClickListener {
                 break;
             case R.id.btn_all:
                 model.setDateRange(2);
+                dismiss();
+                break;
+            case R.id.btn_cancel:
                 dismiss();
                 break;
         }

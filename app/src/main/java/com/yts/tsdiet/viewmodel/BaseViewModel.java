@@ -1,5 +1,6 @@
 package com.yts.tsdiet.viewmodel;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,6 +17,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class BaseViewModel extends ViewModel {
 
     public TSLiveData<Boolean> isLoading = new TSLiveData<>(false);
+    public TSLiveData<Boolean> isEmpty = new TSLiveData<>(true);
     protected Realm mRealm = Realm.getDefaultInstance();
 
 

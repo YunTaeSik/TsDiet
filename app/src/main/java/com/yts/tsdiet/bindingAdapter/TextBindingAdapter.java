@@ -67,7 +67,28 @@ public class TextBindingAdapter {
                 break;
         }
         view.setText(text);
+    }
 
+    @BindingAdapter({"setKindText"})
+    public static void setKindText(TextView view, Integer typeInteger) {
+        Context context = view.getContext();
+        int type = typeInteger != null ? typeInteger : 1;
+        String text;
+        switch (type) {
+            case 0:
+                text = context.getString(R.string.weight);
+                break;
+            case 1:
+                text = context.getString(R.string.calorie);
+                break;
+            case 2:
+                text = context.getString(R.string.all);
+                break;
+            default:
+                text = context.getString(R.string.all);
+                break;
+        }
+        view.setText(text);
     }
 
 

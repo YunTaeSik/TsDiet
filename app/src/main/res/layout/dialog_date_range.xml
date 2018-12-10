@@ -69,7 +69,6 @@
                         android:id="@+id/btn_cancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="@{(v)->model.finish(v)}"
                         android:padding="16dp"
                         android:text="@string/cancel"
                         android:textSize="13sp" />

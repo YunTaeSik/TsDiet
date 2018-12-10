@@ -13,6 +13,7 @@ public class ChartViewModel extends BaseViewModel {
     public TSLiveData<List<Record>> mRecordList = new TSLiveData<>();
 
     public TSLiveData<Integer> mDateRangeType = new TSLiveData<>(1);
+    public TSLiveData<Integer> mKindType = new TSLiveData<>(0);
 
     public void initData() {
         setDateRange(1);
@@ -25,6 +26,17 @@ public class ChartViewModel extends BaseViewModel {
     public void setDateRange(int value) {
         mDateRangeType.setValue(value);
         mRecordList.setValue(RealmService.getFastRecordList(Realm.getDefaultInstance(), value));
+        if (mRecordList.getValue().size() > 0) {
+            isEmpty.setValue(false);
+        } else {
+            isEmpty.setValue(true);
+        }
+    }
+
+    public void changeKind() {
+        int kind = mKindType.getValue();
+        kind = (kind + 1) % 3;
+        mKindType.setValue(kind);
     }
 
 

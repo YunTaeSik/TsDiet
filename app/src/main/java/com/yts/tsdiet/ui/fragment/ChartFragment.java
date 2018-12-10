@@ -24,8 +24,10 @@ import com.yts.tsdiet.R;
 import com.yts.tsdiet.data.model.Record;
 import com.yts.tsdiet.databinding.ChartBinding;
 import com.yts.tsdiet.ui.dialog.DateRangeDialog;
+import com.yts.tsdiet.utils.ChartValueFormatter;
 import com.yts.tsdiet.utils.ChartXValueFormatter;
 import com.yts.tsdiet.utils.SendBroadcast;
+import com.yts.tsdiet.utils.ValueFormat;
 import com.yts.tsdiet.viewmodel.chart.ChartViewModel;
 
 import java.util.ArrayList;
@@ -104,77 +106,105 @@ public class ChartFragment extends Fragment implements View.OnClickListener {
                     setChart(records);
                 }
             });
+            model.mKindType.observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(Integer integer) {
+                    setChart(model.mRecordList.getValue());
+                }
+            });
+
         }
     }
 
     private void setChart(List<Record> records) {
-        LineChart lineChart = binding.lineChart;
-        //lineChart.invalidate(); //차트 초기화 작업
-        lineChart.clear();
+        try {
+            LineChart lineChart = binding.lineChart;
+            lineChart.clear();
 
-        ArrayList<Entry> weightValues = new ArrayList<>();//차트 데이터 셋에 담겨질 데이터
-        ArrayList<Entry> kcalValues = new ArrayList<>();//차트 데이터 셋에 담겨질 데이터
+            ArrayList<Entry> weightValues = new ArrayList<>();//차트 데이터 셋에 담겨질 데이터
+            ArrayList<Entry> kcalValues = new ArrayList<>();//차트 데이터 셋에 담겨질 데이터
 
 
-        for (int i = 0; i < records.size(); i++) {
-            Record record = records.get(i);
-            float weight = (float) record.getWeight();
-            //  float kcal = (float) record.getTotalKcal();
-            weightValues.add(new Entry(i, weight));
-            // kcalValues.add(new Entry(i, kcal));
+            for (int i = 0; i < records.size(); i++) {
+                Record record = records.get(i);
+                float weight = Float.parseFloat(ValueFormat.format(record.getWeight()));
+                float kcal = Float.parseFloat(ValueFormat.format(record.getTotalKcal()));
+                weightValues.add(new Entry(i, weight));
+                kcalValues.add(new Entry(i, kcal));
+            }
+
+            /*몸무게*/
+
+            LineDataSet weightLineDataSet = null;
+            if (model != null && model.mKindType != null && model.mKindType.getValue() != null && (model.mKindType.getValue() == 0 || model.mKindType.getValue() == 2)) {
+                weightLineDataSet = new LineDataSet(weightValues, getString(R.string.weight_kg)); //LineDataSet 선언
+                weightLineDataSet.setColor(ContextCompat.getColor(getContext(), R.color.purple)); //LineChart에서 Line Color 설정
+                weightLineDataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.purple)); // LineChart에서 Line Circle Color 설정
+                weightLineDataSet.setCircleHoleColor(ContextCompat.getColor(getContext(), R.color.white)); // LineChart에서 Line Hole Circle Color 설정
+                weightLineDataSet.setLineWidth(2f);
+                weightLineDataSet.setCircleHoleRadius(2f);
+                weightLineDataSet.setCircleRadius(4f);
+            }
+
+            //칼로리
+            LineDataSet kcalLineDataSet = null;
+            if (model != null && model.mKindType != null && model.mKindType.getValue() != null && (model.mKindType.getValue() == 1 || model.mKindType.getValue() == 2)) {
+                kcalLineDataSet = new LineDataSet(kcalValues, getString(R.string.total_calorie_kcal)); //LineDataSet 선언
+                kcalLineDataSet.setColor(ContextCompat.getColor(getContext(), R.color.blueDark)); //LineChart에서 Line Color 설정
+                kcalLineDataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.blueDark)); // LineChart에서 Line Circle Color 설정
+                kcalLineDataSet.setCircleHoleColor(ContextCompat.getColor(getContext(), R.color.white)); // LineChart에서 Line Hole Circle Color 설정
+                kcalLineDataSet.setLineWidth(2f);
+                kcalLineDataSet.setCircleHoleRadius(2f);
+                kcalLineDataSet.setCircleRadius(4f);
+            }
+
+            LineData lineData = new LineData(); //LineDataSet을 담는 그릇 여러개의 라인 데이터가 들어갈 수 있습니다.
+            if (weightLineDataSet != null) {
+                lineData.addDataSet(weightLineDataSet);
+            }
+            if (kcalLineDataSet != null) {
+                lineData.addDataSet(kcalLineDataSet);
+            }
+
+            lineData.setValueTextColor(ContextCompat.getColor(getContext(), R.color.textColor)); //라인 데이터의 텍스트 컬러 설정
+            lineData.setValueTextSize(9);
+            lineData.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.bmhannapro));
+            lineData.setValueFormatter(new ChartValueFormatter());
+
+            XAxis xAxis = lineChart.getXAxis(); // x 축 설정
+            xAxis.setValueFormatter(new ChartXValueFormatter(records)); //X축의 데이터를 제 가공함. new ChartXValueFormatter은 Custom한 소스
+            xAxis.setLabelCount(4); //X축의 데이터를 최대 몇개 까지 나타낼지에 대한 설정 5개 force가 true 이면 반드시 보여줌
+            xAxis.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bmhannapro));
+            xAxis.setTextColor(ContextCompat.getColor(getContext(), R.color.textColor)); // X축 텍스트컬러설정
+            xAxis.setGridColor(ContextCompat.getColor(getContext(), R.color.textColor)); // X축 줄의 컬러 설정
+            //   xAxis.setGranularity(1);
+            //  xAxis.setGranularityEnabled(true);
+            xAxis.setAvoidFirstLastClipping(true);
+            //xAxis.setTextSize(11);
+
+            YAxis yAxisLeft = lineChart.getAxisLeft(); //Y축의 왼쪽면 설정
+            yAxisLeft.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bmhannapro));
+            yAxisLeft.setTextColor(ContextCompat.getColor(getContext(), R.color.textColor)); //Y축 텍스트 컬러 설정
+            yAxisLeft.setGridColor(ContextCompat.getColor(getContext(), R.color.textColor)); // Y축 줄의 컬러 설정
+            //yAxisLeft.setTextSize(11);
+
+            YAxis yAxisRight = lineChart.getAxisRight(); //Y축의 오른쪽면 설정
+            yAxisRight.setDrawLabels(false);
+            yAxisRight.setDrawAxisLine(false);
+            yAxisRight.setDrawGridLines(false);
+            //y축의 활성화를 제거함
+
+
+            //  lineChart.setPinchZoom(fal);
+            lineChart.setDescription(null); //차트에서 Description 설정 저는 따로 안했습니다.
+
+            Legend legend = lineChart.getLegend(); //레전드 설정 (차트 밑에 색과 라벨을 나타내는 설정)
+            legend.setTextColor(ContextCompat.getColor(getContext(), R.color.textColor)); // 레전드 컬러 설정
+            legend.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bmhannapro));
+            lineChart.setData(lineData);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        /*몸무게*/
-        LineDataSet weightLineDataSet = new LineDataSet(weightValues, getString(R.string.weight_kg)); //LineDataSet 선언
-        weightLineDataSet.setColor(ContextCompat.getColor(getContext(), R.color.purple)); //LineChart에서 Line Color 설정
-        weightLineDataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.purple)); // LineChart에서 Line Circle Color 설정
-        weightLineDataSet.setCircleHoleColor(ContextCompat.getColor(getContext(), R.color.purple)); // LineChart에서 Line Hole Circle Color 설정
-
-        //칼로리
-        LineDataSet kcalLineDataSet = new LineDataSet(kcalValues, getString(R.string.total_calorie_kcal)); //LineDataSet 선언
-        kcalLineDataSet.setColor(ContextCompat.getColor(getContext(), R.color.blueDark)); //LineChart에서 Line Color 설정
-        kcalLineDataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.blueDark)); // LineChart에서 Line Circle Color 설정
-        kcalLineDataSet.setCircleHoleColor(ContextCompat.getColor(getContext(), R.color.blueDark)); // LineChart에서 Line Hole Circle Color 설정
-
-        LineData lineData = new LineData(); //LineDataSet을 담는 그릇 여러개의 라인 데이터가 들어갈 수 있습니다.
-        lineData.addDataSet(weightLineDataSet);
-        //    lineData.addDataSet(kcalLineDataSet);
-
-        lineData.setValueTextColor(ContextCompat.getColor(getContext(), R.color.textColor)); //라인 데이터의 텍스트 컬러 설정
-        lineData.setValueTextSize(9);
-        lineData.setValueTypeface(ResourcesCompat.getFont(getContext(), R.font.bmhannapro));
-
-        XAxis xAxis = lineChart.getXAxis(); // x 축 설정
-        xAxis.setValueFormatter(new ChartXValueFormatter(records)); //X축의 데이터를 제 가공함. new ChartXValueFormatter은 Custom한 소스
-        xAxis.setLabelCount(4); //X축의 데이터를 최대 몇개 까지 나타낼지에 대한 설정 5개 force가 true 이면 반드시 보여줌
-        xAxis.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bmhannapro));
-        xAxis.setTextColor(ContextCompat.getColor(getContext(), R.color.textColor)); // X축 텍스트컬러설정
-        xAxis.setGridColor(ContextCompat.getColor(getContext(), R.color.textColor)); // X축 줄의 컬러 설정
-        //   xAxis.setGranularity(1);
-        //  xAxis.setGranularityEnabled(true);
-        xAxis.setAvoidFirstLastClipping(true);
-        //xAxis.setTextSize(11);
-
-        YAxis yAxisLeft = lineChart.getAxisLeft(); //Y축의 왼쪽면 설정
-        yAxisLeft.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bmhannapro));
-        yAxisLeft.setTextColor(ContextCompat.getColor(getContext(), R.color.textColor)); //Y축 텍스트 컬러 설정
-        yAxisLeft.setGridColor(ContextCompat.getColor(getContext(), R.color.textColor)); // Y축 줄의 컬러 설정
-        //yAxisLeft.setTextSize(11);
-
-        YAxis yAxisRight = lineChart.getAxisRight(); //Y축의 오른쪽면 설정
-        yAxisRight.setDrawLabels(false);
-        yAxisRight.setDrawAxisLine(false);
-        yAxisRight.setDrawGridLines(false);
-        //y축의 활성화를 제거함
-
-
-        //  lineChart.setPinchZoom(fal);
-        lineChart.setDescription(null); //차트에서 Description 설정 저는 따로 안했습니다.
-
-        Legend legend = lineChart.getLegend(); //레전드 설정 (차트 밑에 색과 라벨을 나타내는 설정)
-        legend.setTextColor(ContextCompat.getColor(getContext(), R.color.textColor)); // 레전드 컬러 설정
-        legend.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bmhannapro));
-        lineChart.setData(lineData);
     }
 
 
