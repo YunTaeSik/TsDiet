@@ -26,6 +26,8 @@ public class RecordFoodActivity extends BaseActivity {
         binding.setModel(model);
         binding.setLifecycleOwner(this);
 
+        model.setAdRequest(mAdRequest);
+
         Food food = getIntent().getParcelableExtra(Keys.FOOD);
 
         model.setFood(food);

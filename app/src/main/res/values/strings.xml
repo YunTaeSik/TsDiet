@@ -62,4 +62,7 @@
 
     <string name="contact_email" tools:ignore="MissingTranslation">"sky877kr@gmail.com"</string>
     <string name="invitation_deep_link" tools:ignore="MissingTranslation">"https://sn3d4.app.goo.gl/TSDIET"</string>
+
+    <string name="ad_app_id" tools:ignore="MissingTranslation">"ca-app-pub-9788292917303375~1813593632"</string>
+    <string name="banner_ad_id" tools:ignore="MissingTranslation">"ca-app-pub-9788292917303375/2168816858"</string>
 </resources>

@@ -1,25 +1,27 @@
 package com.yts.tsdiet.viewmodel;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 
+import com.google.android.gms.ads.AdRequest;
 import com.yts.tsdiet.data.TSLiveData;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
-import io.realm.Realm;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class BaseViewModel extends ViewModel {
+    public AdRequest mAdRequest;
 
     public TSLiveData<Boolean> isLoading = new TSLiveData<>(false);
     public TSLiveData<Boolean> isEmpty = new TSLiveData<>(true);
-    protected Realm mRealm = Realm.getDefaultInstance();
 
+    public void setAdRequest(AdRequest mAdRequest) {
+        this.mAdRequest = mAdRequest;
+    }
 
     public void finish(View view) {
         Context context = view.getContext();
@@ -42,4 +44,8 @@ public class BaseViewModel extends ViewModel {
         }
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+    }
 }

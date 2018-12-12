@@ -24,6 +24,8 @@ public class GoalSettingActivity extends BaseActivity {
         binding.setModel(model);
         binding.setLifecycleOwner(this);
 
+        model.setAdRequest(mAdRequest);
+
         model.initData(this);
 
         observe();

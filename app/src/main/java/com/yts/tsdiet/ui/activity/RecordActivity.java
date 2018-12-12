@@ -40,6 +40,8 @@ public class RecordActivity extends BaseActivity {
         binding.setModel(model);
         binding.setLifecycleOwner(this);
 
+        model.setAdRequest(mAdRequest);
+
         Calendar calendar = (Calendar) getIntent().getSerializableExtra(Keys.CALENDAR);
         model.getRecordList(mRealm, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 

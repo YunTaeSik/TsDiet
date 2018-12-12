@@ -14,247 +14,263 @@
             type="com.yts.tsdiet.viewmodel.RecordFoodViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.activity.MainActivity">
+        android:orientation="vertical">
 
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:context=".ui.activity.MainActivity">
 
-            <!--해더-->
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background"
-                android:elevation="4dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:foreground="?android:selectableItemBackgroundBorderless"
-                    android:onClick="@{(v)->model.finish(v)}"
-                    android:padding="16dp"
-                    app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="16dp"
-                    android:shadowDx="5"
-                    android:shadowDy="5"
-                    android:shadowRadius="3.0"
-                    android:text="@{model.mRecordFood.name}"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:foreground="?android:selectableItemBackgroundBorderless"
-                    android:onClick="@{(v)->model.save(v)}"
-                    android:padding="16dp"
-                    android:text="@string/save" />
-
-
-            </LinearLayout>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                <!--해더-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/background"
+                    android:elevation="4dp"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
-                    android:onClick="@{(v)->model.hideKeyboard(v)}"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/quantity_count"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:foreground="?android:selectableItemBackgroundBorderless"
+                        android:onClick="@{(v)->model.finish(v)}"
+                        android:padding="16dp"
+                        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        setText="@{model.mQuantity}"
-                        android:layout_width="match_parent"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="24dp"
-                        android:background="@drawable/background_edit"
-                        android:hint="@string/hint_quantity"
-                        android:imeOptions="actionDone"
-                        android:inputType="numberDecimal"
-                        android:onTextChanged="@{(text, start, before, count)->model.changeQuantity(text)}"
-                        android:padding="12dp"
-                        android:singleLine="true" />
-
-                    <View style="@style/lineView" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/weight_two_g"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        setText="@{model.mSize}"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="24dp"
-                        android:background="@drawable/background_edit"
-                        android:hint="@string/hint_weight_two"
-                        android:imeOptions="actionDone"
-                        android:inputType="numberDecimal"
-                        android:onTextChanged="@{(text, start, before, count)->model.changeSize(text)}"
-                        android:padding="12dp"
-                        android:singleLine="true" />
-
-                    <View style="@style/lineView" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/total_calorie_kcal"
-                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:shadowDx="5"
+                        android:shadowDy="5"
+                        android:shadowRadius="3.0"
+                        android:text="@{model.mRecordFood.name}"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        setText="@{model.mRecordFood.kcal}"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="24dp"
-                        android:background="@drawable/background_edit"
-                        android:padding="12dp"
-                        android:singleLine="true" />
-
-
-                    <View style="@style/lineView" />
-
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/nutrient_g"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:foreground="?android:selectableItemBackgroundBorderless"
+                        android:onClick="@{(v)->model.save(v)}"
+                        android:padding="16dp"
+                        android:text="@string/save" />
+
+
+                </LinearLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:orientation="horizontal">
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:onClick="@{(v)->model.hideKeyboard(v)}"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quantity_count"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            setText="@{model.mQuantity}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="24dp"
+                            android:background="@drawable/background_edit"
+                            android:hint="@string/hint_quantity"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberDecimal"
+                            android:onTextChanged="@{(text, start, before, count)->model.changeQuantity(text)}"
+                            android:padding="12dp"
+                            android:singleLine="true" />
+
+                        <View style="@style/lineView" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/weight_two_g"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            setText="@{model.mSize}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="24dp"
+                            android:background="@drawable/background_edit"
+                            android:hint="@string/hint_weight_two"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberDecimal"
+                            android:onTextChanged="@{(text, start, before, count)->model.changeSize(text)}"
+                            android:padding="12dp"
+                            android:singleLine="true" />
+
+                        <View style="@style/lineView" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/total_calorie_kcal"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            setText="@{model.mRecordFood.kcal}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="24dp"
+                            android:background="@drawable/background_edit"
+                            android:padding="12dp"
+                            android:singleLine="true" />
+
+
+                        <View style="@style/lineView" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/nutrient_g"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="horizontal">
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                setText="@{model.mRecordFood.carbohydrate}"
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:autoSizeTextType="uniform"
-                                android:background="@drawable/background_circle_black"
-                                android:gravity="center"
-                                android:padding="12dp"
-                                android:textColor="@color/white"
-                                app:autoSizePresetSizes="@array/auto_size_text_sizes" />
-
-                            <TextView
-                                setNutrientPercentText="@{model.mRecordFood}"
-                                setType="@{Type.CARBOHYDRATE}"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    setText="@{model.mRecordFood.carbohydrate}"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:autoSizeTextType="uniform"
+                                    android:background="@drawable/background_circle_black"
+                                    android:gravity="center"
+                                    android:padding="12dp"
+                                    android:textColor="@color/white"
+                                    app:autoSizePresetSizes="@array/auto_size_text_sizes" />
+
+                                <TextView
+                                    setNutrientPercentText="@{model.mRecordFood}"
+                                    setType="@{Type.CARBOHYDRATE}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    setText="@{model.mRecordFood.protein}"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:autoSizeTextType="uniform"
+                                    android:background="@drawable/background_circle_yellow"
+                                    android:gravity="center"
+                                    android:padding="12dp"
+                                    android:textColor="@color/white"
+                                    app:autoSizePresetSizes="@array/auto_size_text_sizes" />
+
+                                <TextView
+                                    setNutrientPercentText="@{model.mRecordFood}"
+                                    setType="@{Type.PROTEIN}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:textColor="@color/yellow"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    setText="@{model.mRecordFood.fat}"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:autoSizeTextType="uniform"
+                                    android:background="@drawable/background_circle_blue"
+                                    android:gravity="center"
+                                    android:padding="12dp"
+                                    android:textColor="@color/white"
+                                    app:autoSizePresetSizes="@array/auto_size_text_sizes" />
+
+                                <TextView
+                                    setNutrientPercentText="@{model.mRecordFood}"
+                                    setType="@{Type.FAT}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:textColor="@color/blue"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                setText="@{model.mRecordFood.protein}"
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:autoSizeTextType="uniform"
-                                android:background="@drawable/background_circle_yellow"
-                                android:gravity="center"
-                                android:padding="12dp"
-                                android:textColor="@color/white"
-                                app:autoSizePresetSizes="@array/auto_size_text_sizes" />
-
-                            <TextView
-                                setNutrientPercentText="@{model.mRecordFood}"
-                                setType="@{Type.PROTEIN}"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:textColor="@color/yellow"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                setText="@{model.mRecordFood.fat}"
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:autoSizeTextType="uniform"
-                                android:background="@drawable/background_circle_blue"
-                                android:gravity="center"
-                                android:padding="12dp"
-                                android:textColor="@color/white"
-                                app:autoSizePresetSizes="@array/auto_size_text_sizes" />
-
-                            <TextView
-                                setNutrientPercentText="@{model.mRecordFood}"
-                                setType="@{Type.FAT}"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:textColor="@color/blue"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                        <View style="@style/lineView" />
 
                     </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
 
-                    <View style="@style/lineView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+     <!--   <com.google.android.gms.ads.AdView
+            setBanner="@{model.mAdRequest}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_ad_id" />-->
+    </LinearLayout>
 </layout>

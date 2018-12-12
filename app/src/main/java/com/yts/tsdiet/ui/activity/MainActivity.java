@@ -37,6 +37,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         binding.setModel(model);
         binding.setLifecycleOwner(this);
 
+        model.setAdRequest(mAdRequest);
         setFragments();
         binding.navigation.setOnNavigationItemSelectedListener(this);
     }
