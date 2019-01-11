@@ -1,6 +1,5 @@
 package com.yts.tsdiet.data;
 
-import java.util.List;
 
 import androidx.lifecycle.MutableLiveData;
 

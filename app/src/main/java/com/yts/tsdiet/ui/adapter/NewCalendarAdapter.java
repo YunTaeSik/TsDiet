@@ -36,14 +36,14 @@ public class NewCalendarAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public int getItemViewType(int position) {
+    public int getItemViewType(int position) { //뷰타입 나누기
         Object item = mCalendarList.get(position);
         if (item instanceof Long) {
-            return HEADER_TYPE;
+            return HEADER_TYPE; //날짜 타입
         } else if (item instanceof String) {
-            return EMPTY_TYPE;
+            return EMPTY_TYPE; // 비어있는 일자 타입
         } else {
-            return DAY_TYPE;
+            return DAY_TYPE; // 일자 타입
 
         }
     }
@@ -52,24 +52,27 @@ public class NewCalendarAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == HEADER_TYPE) {
-            CalendarHeaderBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_calendar_header, parent, false);
+        if (viewType == HEADER_TYPE) { // 날짜 타입
+            CalendarHeaderBinding binding =
+                    DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_calendar_header, parent, false);
             StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) binding.getRoot().getLayoutParams();
-            params.setFullSpan(true);
+            params.setFullSpan(true); //Span을 하나로 통합하기
             binding.getRoot().setLayoutParams(params);
             return new HeaderViewHolder(binding);
-        } else if (viewType == EMPTY_TYPE) {
-            EmptyDayBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_day_empty, parent, false);
+        } else if (viewType == EMPTY_TYPE) { //비어있는 일자 타입
+            EmptyDayBinding binding =
+                    DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_day_empty, parent, false);
             return new EmptyViewHolder(binding);
         }
-        DayItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_day, parent, false);
+        DayItemBinding binding =
+                DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_day, parent, false);// 일자 타입
         return new DayViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         int viewType = getItemViewType(position);
-        if (viewType == HEADER_TYPE) {
+        if (viewType == HEADER_TYPE) { //날짜 타입 꾸미기
             HeaderViewHolder holder = (HeaderViewHolder) viewHolder;
             Object item = mCalendarList.get(position);
             CalendarHeaderViewModel model = new CalendarHeaderViewModel();
@@ -77,11 +80,11 @@ public class NewCalendarAdapter extends RecyclerView.Adapter {
                 model.setHeaderDate((Long) item);
             }
             holder.setViewModel(model);
-        } else if (viewType == EMPTY_TYPE) {
+        } else if (viewType == EMPTY_TYPE) { //비어있는 날짜 타입 꾸미기
             EmptyViewHolder holder = (EmptyViewHolder) viewHolder;
             EmptyViewModel model = new EmptyViewModel();
             holder.setViewModel(model);
-        } else if (viewType == DAY_TYPE) {
+        } else if (viewType == DAY_TYPE) { // 일자 타입 꾸미기
             DayViewHolder holder = (DayViewHolder) viewHolder;
             Object item = mCalendarList.get(position);
             CalendarViewModel model = new CalendarViewModel();
@@ -102,45 +105,45 @@ public class NewCalendarAdapter extends RecyclerView.Adapter {
     }
 
 
-    private class HeaderViewHolder extends RecyclerView.ViewHolder {
+    private class HeaderViewHolder extends RecyclerView.ViewHolder { //날짜 타입 ViewHolder
         private CalendarHeaderBinding binding;
 
-        public HeaderViewHolder(@NonNull CalendarHeaderBinding binding) {
+        private HeaderViewHolder(@NonNull CalendarHeaderBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void setViewModel(CalendarHeaderViewModel model) {
+        private void setViewModel(CalendarHeaderViewModel model) {
             binding.setModel(model);
             binding.executePendingBindings();
         }
     }
 
 
-    private class EmptyViewHolder extends RecyclerView.ViewHolder {
+    private class EmptyViewHolder extends RecyclerView.ViewHolder { // 비어있는 요일 타입 ViewHolder
         private EmptyDayBinding binding;
 
-        public EmptyViewHolder(@NonNull EmptyDayBinding binding) {
+        private EmptyViewHolder(@NonNull EmptyDayBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void setViewModel(EmptyViewModel model) {
+        private void setViewModel(EmptyViewModel model) {
             binding.setModel(model);
             binding.executePendingBindings();
         }
 
     }
 
-    private class DayViewHolder extends RecyclerView.ViewHolder {
+    private class DayViewHolder extends RecyclerView.ViewHolder {// 요일 타입 ViewHolder
         private DayItemBinding binding;
 
-        public DayViewHolder(@NonNull DayItemBinding binding) {
+        private DayViewHolder(@NonNull DayItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void setViewModel(CalendarViewModel model) {
+        private void setViewModel(CalendarViewModel model) {
             binding.setModel(model);
             binding.executePendingBindings();
         }
