@@ -8,6 +8,7 @@ import com.yts.tsdiet.databinding.GoalSettingBinding;
 import com.yts.tsdiet.viewmodel.setting.GoalSettingViewModel;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -22,7 +23,7 @@ public class GoalSettingActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_goal_setting);
         model = ViewModelProviders.of(this).get(GoalSettingViewModel.class);
         binding.setModel(model);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner((LifecycleOwner) this);
 
         model.setAdRequest(mAdRequest);
 

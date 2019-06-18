@@ -16,6 +16,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,7 +35,7 @@ public class FoodListActivity extends BaseActivity implements SearchCallback {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_food_list);
         model = ViewModelProviders.of(this).get(FoodListViewModel.class);
         binding.setModel(model);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner((LifecycleOwner) this);
 
         model.setAdRequest(mAdRequest);
 
@@ -44,7 +45,7 @@ public class FoodListActivity extends BaseActivity implements SearchCallback {
     }
 
     private void observe() {
-        model.mFoodList.observe(this, new Observer<List<Food>>() {
+        model.mFoodList.observe((LifecycleOwner) this, new Observer<List<Food>>() {
             @Override
             public void onChanged(List<Food> objects) {
                 RecyclerView view = binding.listFood;

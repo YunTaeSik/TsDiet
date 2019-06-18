@@ -22,6 +22,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +39,7 @@ public class RecordActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_record);
         model = ViewModelProviders.of(this).get(RecordListViewModel.class);
         binding.setModel(model);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner((LifecycleOwner) this);
 
         model.setAdRequest(mAdRequest);
 
@@ -56,7 +57,7 @@ public class RecordActivity extends BaseActivity {
     }
 
     private void observe() {
-        model.mRecordList.observe(this, new Observer<List<Object>>() {
+        model.mRecordList.observe((LifecycleOwner) this, new Observer<List<Object>>() {
             @Override
             public void onChanged(List<Object> objects) {
                 RecyclerView view = binding.listRecord;

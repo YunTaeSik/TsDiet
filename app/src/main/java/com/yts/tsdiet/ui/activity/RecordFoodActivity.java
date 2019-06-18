@@ -11,6 +11,7 @@ import com.yts.tsdiet.viewmodel.RecordFoodViewModel;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
 
 public class RecordFoodActivity extends BaseActivity {
@@ -24,7 +25,7 @@ public class RecordFoodActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_record_food);
         model = ViewModelProviders.of(this).get(RecordFoodViewModel.class);
         binding.setModel(model);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner((LifecycleOwner) this);
 
         model.setAdRequest(mAdRequest);
 
